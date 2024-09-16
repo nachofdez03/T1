@@ -204,7 +204,7 @@
   document.addEventListener('DOMContentLoaded', function() {
       // Verifica si hay errores en la sesión (esto lo maneja Laravel)
       @if ($errors->any())
-          // Activa la pestaña de registro
+          // Activa la pestaña de registro.
           var registerTab = new bootstrap.Tab(document.querySelector('#tab-register'));
           registerTab.show();
       @endif
