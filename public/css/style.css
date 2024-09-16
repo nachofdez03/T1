@@ -1,0 +1,104 @@
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 205vh;
+}
+
+body.bodyLogin {
+    min-height: 120vh;
+}
+
+header {
+    background-color: black;
+}
+
+.contenedor {
+    width: 90%;
+    margin: auto; /* CSS asigna automáticamente el mismo valor a los márgenes izquierdo derecho contenedor. */
+}
+
+.contenedor a.image-link {
+    width: 40%;
+}
+
+header .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alineamos de forma vertical los elementos del contenedor del header  */
+}
+
+.contenedor img {
+    width: 30%;
+    height: 100%;
+}
+
+nav a {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+/* La pseudo-clase hover permite aplicar un estilo cuando el cursor pasa por encima  */
+nav a:hover {
+    color: red;
+}
+
+.menu {
+    display: flex;
+    gap: 1em;
+}
+
+.Carrusel .contenedor {
+    width: 100%;
+}
+
+.Carrusel .contenedor img {
+    width: 100%;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: start; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    margin-top: 6.5em;
+}
+
+/* ESTILOS DE BOOTSTRAP SOBREESCRITOS*/
+
+main ul {
+    width: 25%;
+}
+
+.tab-content {
+    width: 25%;
+}
+
+button.btn {
+    background-color: black;
+}
+
+/* Cambiar color de fondo y texto de los botones de Login y Register */
+ul.nav-pills .nav-item .nav-link {
+    background-color: black;
+    color: white;
+}
+
+/* Cambiar el color del botón activo (cuando se selecciona Login o Register) */
+ul.nav-pills .nav-item .nav-link.active {
+    background-color: #555;
+    color: white;
+}
+
+/* Cambiar el color cuando se hace hover */
+ul.nav-pills .nav-item .nav-link:hover {
+    background-color: white;
+    color: black;
+    border: solid 1px black;
+}
+
+button.btn:hover {
+    background-color: white;
+    color: black;
+    border: solid 1px black;
+}
