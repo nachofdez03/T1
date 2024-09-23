@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable; // Cambiar Model por Authenticatable
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+// Modelo representa al usuario en tu aplicacion
+class Usuario extends Authenticatable // Extender de Authenticatable en vez de Model
 {
     use HasFactory;
 
@@ -13,6 +15,7 @@ class Usuario extends Model
 
 
     // Atributos que se pueden asignar masivamente
+    // el fillable solo se utiliza para CREATE o UPDATE
     protected $fillable = [
         'dni',
         'nombre',
@@ -38,6 +41,12 @@ class Usuario extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+
+        return $this->rol === 1;
+    }
 
 }
 

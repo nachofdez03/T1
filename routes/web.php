@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JugadorController;
 
 
+// GET: SE UTILIZA PARA OBTENER DATOS DEL SERVIDOR
+// POST: SE UTILIZA PARA ENVIAR DATGOS AL SERVIDOR
 
 // Ruta para la raíz que redirige al listado de jugadores
 //Route::get('jugadores', [JugadorController::class, 'index']);
@@ -35,5 +37,8 @@ Route::get('/register', function () {
 // Ruta para procesar el registro. Esta ruta indica que cuando se envíe una solicitud POST a /register,
 // Laravel debe usar el método register del AuthController.)
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout.submit');
+
 
 

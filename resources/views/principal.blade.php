@@ -18,7 +18,28 @@
                 <a href="">asasdasd</a>
                 <a href="{{ route('nosotros')}}">Sobre Nosotros</a>
                 <a href="">asdasdas</a>
-                <a href="{{route('login')}}">Login</a>
+
+                @if(Auth::check())
+                    @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
+                    <a href="">Administración</a>
+                    @endif
+              
+                
+              
+                <a href=""
+                {{-- Con el event.preventDefault() le decimos al navegador 
+                "No sigas el enlace. Vamos a hacer algo diferente". y debido a que el formulario solo
+                 se envia con un submit pues le damos al submit para que se envie y se active el action
+                 que es el metodo --}}
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Cerrar sesión
+                </a>
+        
+                <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
+                    @csrf
+                @else
+                <a href="{{ route('login') }}">Login</a>
+                @endif
             </nav>            
         </div>
     </header>
@@ -33,6 +54,13 @@
 
 
         </div>
+
+        <!-- Mensajes de éxito -->
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 
     </main>
 

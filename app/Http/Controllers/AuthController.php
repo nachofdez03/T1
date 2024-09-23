@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; // Importamos la fachada Hash, gracias a ella obtendremos las funcionalidades hash como encriptar
+use Illuminate\Support\Facades\Auth;
 
+// Usuario: Es tu modelo Eloquent que representa la tabla usuarios en la base de datos.
 
+// Auth::login(): Este método inicia la sesión de un usuario autenticado. 
+// No pertenece a tu modelo de usuario (en este caso, Usuario), sino a la facade Auth,
 class AuthController extends Controller
 {
+    // El objeto $request contiene los datos que se enviaron desde el formulario a traves del HTTP
     // Método para registrar usuarios
     public function register(Request $request)
     {
@@ -33,6 +38,46 @@ class AuthController extends Controller
         ]);
 
         // Redireccionar o devolver una respuesta
-        return redirect()->route('login')->with('success', 'Usuario registrado exitosamente');
+        return redirect()->route('home')->with('success', 'Usuario registrado exitosamente');
     }
+
+    // Método para manejar el inicio de sesión
+    public function login(Request $request)
+    {
+        // Validar los datos de entrada
+        $credentials = $request->validate([
+            'correoLogin' => 'required|email',
+            'passwordLogin' => 'required',
+        ]);
+
+        // Buscar al usuario por correo
+        // where: Este método de Eloquent construye una consulta para buscar registros 
+        // en la tabla usuarios donde el campo correo sea igual al valor de $credentials['correo'].
+        $usuario = Usuario::where('correo', $credentials['correoLogin'])->first();
+        // SELECT * FROM usuarios WHERE correo = '$credentials['correo']' LIMIT 1;
+
+
+        // Intentar iniciar sesión con las credenciales proporcionadas
+        if ($usuario && Hash::check($credentials['passwordLogin'], $usuario->password)) {
+            // Autenticar al usuario
+            Auth::login($usuario);
+            // Redirigir al usuario a la página de inicio
+            return redirect()->route('home')->with('success', 'Inicio de sesión exitoso');
+        }
+
+        // Si las credenciales no son correctas, devolver un mensaje de error
+        return back()->withErrors([
+            'correoLogin' => 'Las credenciales no coinciden con nuestros registros.',
+        ])->onlyInput('correoLogin');
+    }
+
+    // Método para cerrar sesión (logout)
+    public function logout()
+    {
+        Auth::logout();
+        // Redirigir al usuario a la página previa en la que estaba
+        return redirect()->back()->with('success', 'Has cerrado sesión exitosamente.');
+        // return redirect()->route('login')->with('success', 'Has cerrado sesión exitosamente.');
+    }
+
 }
