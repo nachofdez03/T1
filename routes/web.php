@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\TiendaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JugadorController;
+
 
 
 // GET: SE UTILIZA PARA OBTENER DATOS DEL SERVIDOR
@@ -23,7 +25,7 @@ Route::get('/nosotros', function () {
 })->name('nosotros');
 
 // Ruta para el Login
-Route::get('/auth', function () {
+Route::get('/auth', action: function () {
     return view('auth.login');   //  Esta función anónima devuelve la vista resources/views/nosotros/nosotros.blade.php
 })->name('login');
 
@@ -33,6 +35,16 @@ use App\Http\Controllers\AuthController;
 Route::get('/register', function () {
     return view('auth.register'); // Asegúrate de que coincida con tu vista
 })->name('register');
+
+// Ruta para mostrar la tienda 
+// No es necesario poner la ruta de la tienda si tenemos el controlador
+// Route::get('/tienda', function () {
+//     return view('tienda.tienda');
+// })->name('tienda'); 
+// Pero tenemos que poner el nombre a la tienda
+
+
+Route::get('/tienda', [TiendaController::class, 'index'])->name('tienda');
 
 // Ruta para procesar el registro. Esta ruta indica que cuando se envíe una solicitud POST a /register,
 // Laravel debe usar el método register del AuthController.)

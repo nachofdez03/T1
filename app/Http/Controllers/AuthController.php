@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; // Importamos la fachada Hash, gracias a ella obtendremos las funcionalidades hash como encriptar
 use Illuminate\Support\Facades\Auth;
 
+
+
 // Usuario: Es tu modelo Eloquent que representa la tabla usuarios en la base de datos.
 
 // Auth::login(): Este método inicia la sesión de un usuario autenticado. 
