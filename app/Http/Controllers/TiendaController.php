@@ -38,14 +38,21 @@ class TiendaController extends Controller
         // Obtener todas las categorías
         $categorias = Categoria::all();
 
+        // Lo definimos ya que la primera vez no hay ninguna categoria seleccionada por defecto y da error
+        $categoriaSeleccionada = null;
+        $categoriaSeleccionadaNombre = null;
+
 
         // Verificamos que no hay ninguna categoria seleccionada
         // Verifica si existe un campo llamado categoria_id en la solicitud / Esto se ejecuta si 'categoria_id' tiene un valor que no es vacío (ni "", ni null, ni 0)
         if ($request->has('categoria_id') && !empty($request->input('categoria_id'))) {
             $categoria_id = $request->input('categoria_id');
+            $categoriaSeleccionada = $categoria_id; // Esto lo hacemos para saber que categoria hemos seleccionado
+            // Ya que todo esto se mandará a la vista
 
             // Ahora vamos a coger los productos que tengan esa categoria
             $productos = Producto::where('categoria_id', $categoria_id)->get();
+            $categoriaSeleccionadaNombre = Categoria::where('id', $categoria_id)->get()->first();
 
             // Si no la hay obtenemos los productos de manera aleatoria lo que quiere decir por defecto cuando se accede a la pagina
         } else {
@@ -53,6 +60,6 @@ class TiendaController extends Controller
         }
 
         // Devolver la vista con las categorías y productos
-        return view('tienda.tienda', compact('categorias', 'productos'));
+        return view('tienda.tienda', compact('categorias', 'productos', 'categoriaSeleccionada', 'categoriaSeleccionadaNombre'));
     }
 }

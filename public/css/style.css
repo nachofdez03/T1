@@ -64,6 +64,31 @@ nav a:hover {
     margin-top: 6.5em;
 }
 
+/* Tienda */
+
+.categorias {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 12em;
+    list-style-type: none; /* Quita los puntos de la lista */
+    padding-top: 5em;
+    text-align: center;
+    border: 2px solid transparent; /* Borde por defecto */
+    border-radius: 2em; /* Bordes redondeados */
+}
+
+.categorias img {
+    width: 7.5em; /* Ajusta este valor según tus necesidades */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border: 4px solid transparent; /* Borde transparente por defecto */
+    cursor: pointer;
+}
+
+.categorias h5 {
+    font-size: 0.9em;
+}
+
 /* ESTILOS DE BOOTSTRAP SOBREESCRITOS*/
 
 main ul {
@@ -76,6 +101,28 @@ main ul {
 
 button.btn {
     background-color: black;
+}
+
+.productos {
+    margin-top: 10em;
+}
+
+/* TARJETAS PRODUCTO TIENDA */
+
+.producto-carta {
+    min-height: 26em;
+    margin-bottom: 5em;
+}
+
+.producto-carta .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.container .row .mb-4 .card {
+    border: none;
+    box-shadow: none;
 }
 
 /* Cambiar color de fondo y texto de los botones de Login y Register */
@@ -101,4 +148,27 @@ button.btn:hover {
     background-color: white;
     color: black;
     border: solid 1px black;
+}
+
+.categorias img:hover {
+    border-bottom-color: black; /* Cambia el borde a negro al hacer hover */
+
+    transform: translateY(
+        -1em
+    ); /* Mueve la imagen hacia arriba al hacer hover */
+    /* filter: brightness(70%); Alternativa simple para oscurecer la imagen */
+    transition: all 0.3s ease;
+    /* permite que los cambios en cualquier propiedad CSS del elemento se animen suavemente durante un tiempo de 0.3 segundos*/
+}
+
+.productos img:hover {
+    transform: translateY(-3.5em);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.categoria-seleccionada {
+    filter: brightness(0.9); /* 0.5 significa 50% de brillo */
+    border: 2px solid transparent; /* Borde por defecto */
+    border-radius: 2em; /* Bordes redondeados */
 }

@@ -53,26 +53,48 @@
     
         </header>
         <main>
-                     
-            <h2>Categorías</h2>
-            <ul>
+     
+            <ul class="categorias">
                 @foreach($categorias as $categoria)
                     <li>
-                        <form action="{{ route('tienda') }}" method="GET" style="display: inline;">
+                        <form action="{{ route('tienda') }}" method="GET">
                             <input type="hidden" name="categoria_id" value="{{ $categoria->id }}">
-                            <button type="submit" class="btn btn-link">{{ $categoria->nombre }}</button>
+                             <img src="{{asset($categoria->imagen)}}" 
+                             class="{{ $categoriaSeleccionada == $categoria->id ? 'categoria-seleccionada' : '' }}" 
+                             alt="" onclick="this.closest('form').submit();">
+                             {{-- <h5>{{ $categoria->nombre }}</h5>  --}}
+                             {{-- Usamos un operador ternario para comprobar si la categoria esta mostrada --}}
+
+                        
+                            {{-- <button type="submit" class="btn btn-link">{{ $categoria->nombre }}</button> 
+                             Optamos por la opcion de darle a la imagen en vez de al boton, pero esta seria otra opcion--}}
                         </form>
                     </li>
                 @endforeach
             </ul>
     
-            <h2>Productos</h2>
-            <div>
-                @foreach($productos as $producto)
-                    <h3>{{ $producto->nombre }}</h3>
-                    <p>Precio: {{ $producto->precio }}</p>
-                @endforeach
+            
+            <div class="container productos ">
+
+                {{-- @if ($categoriaSeleccionadaNombre)
+                <h2 class="categoria-seleccionada-nombre">{{ $categoriaSeleccionadaNombre->nombre }}</h2>
+                @endif --}}
+
+                <div class="row full-width-row">
+                    @foreach($productos as $producto)
+                    <div class="col-md-3 mb-4 d-flex flex-column align-items-center" >
+                        <div class="card producto-carta" style="width: 100%; text-align: center;">
+                            <img src="{{ asset($producto->imagen) }}" class="card-img-top" alt="{{ $producto->nombre }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $producto->nombre }}</h5>
+                                <p class="card-text">Precio: {{ $producto->precio }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
+            
 
 
         </main>
