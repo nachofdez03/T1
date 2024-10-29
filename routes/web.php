@@ -30,6 +30,7 @@ Route::get('/auth', action: function () {
 })->name('login');
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductoController;
 
 // Ruta para mostrar el formulario de registro
 Route::get('/register', function () {
@@ -45,6 +46,8 @@ Route::get('/register', function () {
 
 
 Route::get('/tienda', [TiendaController::class, 'index'])->name('tienda');
+Route::get('/producto/{id}', action: [ProductoController::class, 'detalleProducto'])->name('producto');
+// En este tenemos que poner el parametro ya que estamos enviandolo por el formulario y no recogiendolo desde el Controlador
 
 // Ruta para procesar el registro. Esta ruta indica que cuando se envíe una solicitud POST a /register,
 // Laravel debe usar el método register del AuthController.)

@@ -48,5 +48,12 @@ class Usuario extends Authenticatable // Extender de Authenticatable en vez de M
         return $this->rol === 1;
     }
 
+    // Relación Usuario - Carrito
+    public function carrito()
+    {
+
+        return $this->hasOne(Carrito::class); // Un usuario tiene un carrito
+    }
+
 }
 

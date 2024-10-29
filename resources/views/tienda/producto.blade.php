@@ -8,7 +8,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
         <!-- Bootstrap CSS v5.2.1 -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -16,11 +16,13 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
     </head>
 
     <body>
         <header>
-            <div class="contenedor">
+              <div class="contenedor">
                 <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
                 <nav class="menu">
                     <a href="">asdasdsa</a>
@@ -50,55 +52,48 @@
                     @endif
                 </nav>            
             </div>
-    
         </header>
         <main>
-     
-            <ul class="categorias">
-                @foreach($categorias as $categoria)
-                    <li>
-                        <form action="{{ route('tienda') }}" method="GET">
-                            <input type="hidden" name="categoria_id" value="{{ $categoria->id }}">
-                             <img src="{{asset($categoria->imagen)}}" 
-                             class="{{ $categoriaSeleccionada == $categoria->id ? 'categoria-seleccionada' : '' }}" 
-                             alt="" onclick="this.closest('form').submit();">
-                             {{-- <h5>{{ $categoria->nombre }}</h5>  --}}
-                             {{-- Usamos un operador ternario para comprobar si la categoria esta mostrada --}}
 
-                        
-                            {{-- <button type="submit" class="btn btn-link">{{ $categoria->nombre }}</button> 
-                             Optamos por la opcion de darle a la imagen en vez de al boton, pero esta seria otra opcion--}}
-                        </form>
-                    </li>
-                @endforeach
-            </ul>
-    
-            
-            <div class="container productos ">
-
-                {{-- @if ($categoriaSeleccionadaNombre)
-                <h2 class="categoria-seleccionada-nombre">{{ $categoriaSeleccionadaNombre->nombre }}</h2>
-                @endif --}}
-
-                <div class="row full-width-row">
-                    @foreach($productos as $producto)
-                     <div class="col-md-3 mb-4 d-flex flex-column align-items-center" >
-                        {{-- Ahora en vez de usar un input oculto, lo mandamos en el formulario al controlador --}}
-                         <form action="{{route('producto',$producto->id)}}" method="GET">
-                            <div class="card producto-carta" style="width: 100%; text-align: center;" onclick="this.closest('form').submit();">
-                                <img src="{{ asset($producto->imagen) }}" class="card-img-top" alt="{{ $producto->nombre }}">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $producto->nombre }}</h5>
-                                    <p class="card-text">Precio: {{ $producto->precio }}€</p>
-                                </div>
-                            </div>
-                         </form>
-                     </div>
-                    @endforeach
+            <div class="container d-flex justify-content-center pdt-1 ">
+                <div class="">
+                    <img src="{{asset($producto->imagen)}}" alt="{{asset($producto->nombre)}}">
                 </div>
-            </div>
-            
 
+                <div class="text-center informacion">
+                    <h5 style="font-size: 2em">{{$producto->nombre}}</h5>
+
+                    <p class="display-5 fw-bold" style="color: black; font-size: 2em; margin-top: 1em">${{ number_format($producto->precio, 2) }}</p>
+
+                    <!-- Input para seleccionar cantidad -->
+                    <div class="mt-4">
+                        <label for="cantidad" class="form-label">Cantidad:</label>
+                        <input type="number" id="cantidad" name="cantidad" class="form-control" min="1" value="1" style="width: 5em; margin: auto; border: 1.2px solid">
+                    </div>
+
+                    <div class="mt-4 botonProductoPadre" style="width: 50%; margin-top:10em">
+                        <button class="btn btn-light mb-3 w-100 botonProducto" style="background-color: white;">Añadir al carrito</button>
+                        <button class="btn btn-light w-100 botonProducto" style="background-color: white; ">Comprar</button>
+                    </div>
+                    
+
+                </div>
+
+               
+
+
+
+
+
+
+
+
+
+
+
+            {{-- <p>VISTA TIENDA/PRODUCTO</p>
+           <p>{{ $producto->nombre }}</p>
+           <p>{{ $producto->precio }}</p> --}}
 
         </main>
         <footer>

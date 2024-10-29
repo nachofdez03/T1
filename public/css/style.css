@@ -105,6 +105,7 @@ button.btn {
 
 .productos {
     margin-top: 10em;
+    cursor: pointer;
 }
 
 /* TARJETAS PRODUCTO TIENDA */
@@ -144,6 +145,30 @@ ul.nav-pills .nav-item .nav-link:hover {
     border: solid 1px black;
 }
 
+/* Productos informacion */
+div .informacion {
+    width: 50%;
+}
+
+.container.d-flex {
+    margin-top: 5em;
+}
+
+.botonProductoPadre {
+    width: 70%;
+    margin: auto;
+    margin-top: 4em;
+}
+
+.botonProducto {
+    background-color: white;
+    border: 1.6px solid #ccc;
+    margin: 1em 0;
+    transition: border-color 0.3s;
+    padding: 0.6em; /* Aumentar el padding para mayor tamaño vertical */
+    font-size: 1.1rem; /* Aumentar el tamaño de la fuente si es necesario */
+}
+
 button.btn:hover {
     background-color: white;
     color: black;
@@ -167,6 +192,13 @@ button.btn:hover {
     cursor: pointer;
 }
 
+.productos .card-body:hover {
+    text-decoration: underline;
+}
+
+.botonProducto:hover {
+    border-color: #aaa;
+}
 .categoria-seleccionada {
     filter: brightness(0.9); /* 0.5 significa 50% de brillo */
     border: 2px solid transparent; /* Borde por defecto */

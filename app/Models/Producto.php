@@ -13,10 +13,7 @@ class Producto extends Model
     protected $fillable = ['nombre', 'descripcion', 'categoria_id', 'cantidad_stock'];
 
     // Definimos un accessor para obtener el valor dinámico de 'disponible'
-    public function getDisponibleAttribute()
-    {
-        return $this->cantidad_stock > 0; // Devuelve true si hay stock
-    }
+
 
     // Relación con la categoría
     // Al definir la relación, puedes acceder fácilmente a los datos de la categoría asociada a un producto.
@@ -25,7 +22,18 @@ class Producto extends Model
     // datos relacionados de manera más sencilla y eficaz.
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Categoria::class); // Un producto pertenece a una categoria
     }
+
+    public function carritos()
+    {
+        return $this->belongsToMany(Carrito::class, 'producto_carrito', 'producto_id', 'carrito_id');
+    }
+
+    public function talla()
+    {
+        return $this->belongsTo(Talla::class);
+    }
+
 
 }
