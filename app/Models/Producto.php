@@ -10,7 +10,14 @@ class Producto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'descripcion', 'categoria_id', 'cantidad_stock'];
+    protected $fillable = [
+        'nombre',          // Nombre del producto
+        'descripcion',     // Descripción
+        'precio',          // Precio
+        'categoria_id',    // ID de la categoría
+        'stock',           // Cantidad en stock
+        'imagen'           // Ruta de la imagen
+    ];
 
     // Definimos un accessor para obtener el valor dinámico de 'disponible'
 

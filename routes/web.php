@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\TiendaController;
+use App\Http\Controllers\Admin\CreateProductoController;
+use App\Http\Controllers\Admin\DeleteProductoController;
+use App\Http\Controllers\Admin\UpdateStockController;
+
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JugadorController;
 
@@ -30,7 +35,9 @@ Route::get('/auth', action: function () {
 })->name('login');
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ComprarController;
 use App\Http\Controllers\ProductoController;
+
 
 // Ruta para mostrar el formulario de registro
 Route::get('/register', function () {
@@ -47,6 +54,22 @@ Route::get('/register', function () {
 
 Route::get('/tienda', [TiendaController::class, 'index'])->name('tienda');
 Route::get('/producto/{id}', action: [ProductoController::class, 'detalleProducto'])->name('producto');
+Route::post('/comprar/{id}', [ComprarController::class, 'comprar'])->name('comprar');
+Route::post('/confirmar/{id}', [ComprarController::class, 'confirmar'])->name('confirmar');
+
+// Rutas de la administracion 
+Route::get('/createProductos', [CreateProductoController::class, 'showForm'])->name('createProducts');
+Route::post('/createProductos', [CreateProductoController::class, 'store'])->name('createProducts.store');
+
+// Ruta para mostrar la vista de categorías, para mostrar productos de la categoría seleccionada, para eliminar un producto específico
+Route::get('/deleteProductos', [DeleteProductoController::class, 'showCategories'])->name('deleteProducts');
+Route::get('/deleteProductos/categoria', [DeleteProductoController::class, 'showProductsByCategory'])->name('deleteProducts.filter');
+Route::post('/deleteProductos/{producto}/eliminar', [DeleteProductoController::class, 'destroy'])->name('deleteProducts.destroy');
+
+Route::get('/updateStock', [UpdateStockController::class, 'showCategories'])->name('updateStock');
+Route::get('/updateStock/category', [UpdateStockController::class, 'showProductsByCategory'])->name('updateStock.category');
+Route::post('/updateStock/{producto}', [UpdateStockController::class, 'updateStock'])->name('updateStock.update');
+
 // En este tenemos que poner el parametro ya que estamos enviandolo por el formulario y no recogiendolo desde el Controlador
 
 // Ruta para procesar el registro. Esta ruta indica que cuando se envíe una solicitud POST a /register,

@@ -27,27 +27,31 @@
 
                 @if(Auth::check())
                     @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
-                    <a href="">Administración</a>
+                    <div class="dropdown">
+                        <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
+                        <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
+                            <a class="dropdown-item" href="{{ route('createProducts')}}" id="colorDespegable">Crear Productos</a>
+                            <a class="dropdown-item" href="{{ route('deleteProducts')}}" id="colorDespegable">Borrar Productos</a>
+                            <a class="dropdown-item" href="{{ route('updateStock')}}" id="colorDespegable">Modificar Stock</a>
+                            <a class="dropdown-item" href="#" id="colorDespegable">Usuarios</a>
+                            <a class="dropdown-item" href="#" id="colorDespegable">Configuraciones</a>
+                            <a class="dropdown-item" href="#" id="colorDespegable">Registros</a>
+                        </div>
+                    </div>
                     @endif
-              
-                
-              
-                <a href=""
-                {{-- Con el event.preventDefault() le decimos al navegador 
-                "No sigas el enlace. Vamos a hacer algo diferente". y debido a que el formulario solo
-                 se envia con un submit pues le damos al submit para que se envie y se active el action
-                 que es el metodo --}}
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Cerrar sesión
-                </a>
-        
+                <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a>
                 <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
                     @csrf
+                </form>
                 @else
                 <a href="{{ route('login') }}">Login</a>
                 @endif
             </nav>            
         </div>
+                {{-- Con el event.preventDefault() le decimos al navegador 
+                "No sigas el enlace. Vamos a hacer algo diferente". y debido a que el formulario solo
+                 se envia con un submit pues le damos al submit para que se envie y se active el action
+                 que es el metodo --}}
     </header>
 
     <main>
@@ -74,8 +78,24 @@
 
     </footer>
         
-        
-        {{-- <a href="{{ route('jugadores.index') }}">Ver Lista de Jugadores</a> --}}
-    </div>
+    <script>
+        // JavaScript para controlar el menú desplegable
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownToggle = document.getElementById("adminDropdown");
+            const dropdownMenu = document.getElementById("adminDropdownMenu");
+    
+            dropdownToggle.addEventListener("click", function(event) {
+                event.preventDefault(); // Previene el comportamiento por defecto del enlace
+                dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block"; // Alterna la visibilidad del menú
+            });
+    
+            // Cierra el menú si se hace clic fuera de él
+            document.addEventListener("click", function(event) {
+                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.style.display = "none"; // Cierra el menú si se hace clic fuera de él
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -44,6 +44,7 @@ class AuthController extends Controller
     }
 
     // Método para manejar el inicio de sesión
+
     public function login(Request $request)
     {
         // Validar los datos de entrada

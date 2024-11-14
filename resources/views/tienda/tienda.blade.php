@@ -31,27 +31,30 @@
     
                     @if(Auth::check())
                         @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
-                        <a href="">Administración</a>
+                        <div class="dropdown">
+                            <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
+                            <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
+                                <a class="dropdown-item" href="#" id="colorDespegable">Usuarios</a>
+                                <a class="dropdown-item" href="#" id="colorDespegable">Configuraciones</a>
+                                <a class="dropdown-item" href="#" id="colorDespegable">Registros</a>
+                            </div>
+                        </div>
                         @endif
-                  
-                    <a href=""
-                    {{-- Con el event.preventDefault() le decimos al navegador 
-                    "No sigas el enlace. Vamos a hacer algo diferente". y debido a que el formulario solo
-                     se envia con un submit pues le damos al submit para que se envie y se active el action
-                     que es el metodo --}}
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Cerrar sesión
-                    </a>
-            
+                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a>
                     <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
                         @csrf
+                    </form>
                     @else
                     <a href="{{ route('login') }}">Login</a>
                     @endif
                 </nav>            
             </div>
-    
+                    {{-- Con el event.preventDefault() le decimos al navegador 
+                    "No sigas el enlace. Vamos a hacer algo diferente". y debido a que el formulario solo
+                     se envia con un submit pues le damos al submit para que se envie y se active el action
+                     que es el metodo --}}
         </header>
+    
         <main>
      
             <ul class="categorias">
@@ -80,13 +83,19 @@
                 <h2 class="categoria-seleccionada-nombre">{{ $categoriaSeleccionadaNombre->nombre }}</h2>
                 @endif --}}
 
-                <div class="row full-width-row">
+                <div class="row full-width-row">    
                     @foreach($productos as $producto)
                      <div class="col-md-3 mb-4 d-flex flex-column align-items-center" >
                         {{-- Ahora en vez de usar un input oculto, lo mandamos en el formulario al controlador --}}
                          <form action="{{route('producto',$producto->id)}}" method="GET">
-                            <div class="card producto-carta" style="width: 100%; text-align: center;" onclick="this.closest('form').submit();">
+                            <div class="card producto-carta" style="width: 100%; text-align: center;" onclick="if ({{ $producto->stock }} > 0) { this.closest('form').submit(); }">
+                            
                                 <img src="{{ asset($producto->imagen) }}" class="card-img-top" alt="{{ $producto->nombre }}">
+                                    @if ($producto->stock == 0)
+                                        <div class="sold-out" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(124, 115, 115, 0.7); color: black; display: flex; align-items: center; justify-content: center; font-size: 2em; font-weight: bold;">
+                                         <h5 style="background-color: white">Sold Out</h5>
+                                        </div>
+                                    @endif
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $producto->nombre }}</h5>
                                     <p class="card-text">Precio: {{ $producto->precio }}€</p>
@@ -116,5 +125,25 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script>
+            // JavaScript para controlar el menú desplegable
+            document.addEventListener("DOMContentLoaded", function() {
+                const dropdownToggle = document.getElementById("adminDropdown");
+                const dropdownMenu = document.getElementById("adminDropdownMenu");
+        
+                dropdownToggle.addEventListener("click", function(event) {
+                    event.preventDefault(); // Previene el comportamiento por defecto del enlace
+                    dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block"; // Alterna la visibilidad del menú
+                });
+        
+                // Cierra el menú si se hace clic fuera de él
+                document.addEventListener("click", function(event) {
+                    if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                        dropdownMenu.style.display = "none"; // Cierra el menú si se hace clic fuera de él
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

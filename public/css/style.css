@@ -8,6 +8,8 @@ body.bodyLogin {
     min-height: 120vh;
 }
 
+/* Main compra */
+
 header {
     background-color: black;
 }
@@ -27,6 +29,21 @@ header .contenedor {
     align-items: center; /* Alineamos de forma vertical los elementos del contenedor del header  */
 }
 
+.dropdown-menu {
+    display: none; /* Ocultamos el menú desplegable por defecto */
+    position: absolute; /* Posicionamos el dropdown correctamente */
+    background-color: black; /* Color de fondo del menú desplegable */
+    z-index: 1000; /* Asegura que el menú aparezca por encima de otros elementos */
+}
+
+.dropdown-item {
+    color: white; /* Asegúrate de que el texto del dropdown sea visible */
+    padding: 0.5em 1em; /* Espaciado en los elementos del dropdown */
+}
+
+#colorDespegable {
+    color: white;
+}
 .contenedor img {
     width: 30%;
     height: 100%;
@@ -162,12 +179,43 @@ div .informacion {
 
 .botonProducto {
     background-color: white;
-    border: 1.6px solid #ccc;
-    margin: 1em 0;
+    border: 1px solid #9b9191;
+    border-radius: 0.2em;
+    margin: 0.5em 0;
     transition: border-color 0.3s;
-    padding: 0.6em; /* Aumentar el padding para mayor tamaño vertical */
+    padding: 0.5em; /* Aumentar el padding para mayor tamaño vertical */
     font-size: 1.1rem; /* Aumentar el tamaño de la fuente si es necesario */
 }
+
+.imagen-container .informacion {
+    max-width: 30%;
+}
+
+.imagenComprar {
+    width: 70%;
+    height: auto;
+}
+
+.informacionCompra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario-compacto {
+    max-width: 30em; /* Ajusta el ancho máximo que desees */
+    margin: auto; /* Centra el formulario horizontalmente */
+}
+
+/* Administrador */
+
+.FormCreateProductos {
+    max-width: 30em; /* Ajusta el ancho máximo que desees */
+    margin: auto; /* Centra el formulario horizontalmente */
+}
+
+/* HOVER */
 
 button.btn:hover {
     background-color: white;
@@ -197,10 +245,16 @@ button.btn:hover {
 }
 
 .botonProducto:hover {
-    border-color: #aaa;
+    border-color: black;
 }
+
 .categoria-seleccionada {
     filter: brightness(0.9); /* 0.5 significa 50% de brillo */
     border: 2px solid transparent; /* Borde por defecto */
     border-radius: 2em; /* Bordes redondeados */
+}
+
+#colorDespegable:hover {
+    /* Cambia el fondo al pasar el mouse */
+    color: black; /* Cambia el color del texto a negro en hover */
 }
