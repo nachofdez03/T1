@@ -23,4 +23,11 @@ class Pedido extends Model
     {
         return $this->belongsTo(PedidoEstado::class, 'pedido_estado_id');
     }
+
+    public function productos()
+    {
+        return $this->belongsToMany(Producto::class, 'pedido_producto')
+            ->withPivot('cantidad', 'precio') // Campos adicionales de la tabla intermedia
+            ->withTimestamps();
+    }
 }

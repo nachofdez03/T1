@@ -28,7 +28,11 @@ header .contenedor {
     justify-content: space-between;
     align-items: center; /* Alineamos de forma vertical los elementos del contenedor del header  */
 }
-
+#carrito-icon {
+    width: 2em;
+    height: auto;
+    margin: auto;
+}
 .dropdown-menu {
     display: none; /* Ocultamos el menú desplegable por defecto */
     position: absolute; /* Posicionamos el dropdown correctamente */
@@ -215,6 +219,68 @@ div .informacion {
     margin: auto; /* Centra el formulario horizontalmente */
 }
 
+/* PEDIDO */
+
+main.MainPedidos {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    flex-direction: column;
+    align-items: center; /* Centra verticalmente */
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para el título principal */
+.titulo-pedidos {
+    font-size: 2rem;
+    margin: 1.5em auto;
+    text-align: center;
+    color: #333;
+}
+
+/* Contenedor para cada pedido */
+.pedido {
+    width: 80%; /* Ajusta el ancho general de cada pedido */
+    margin: 1.5em auto; /* Espaciado entre pedidos */
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1.5em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
+
+/* Título del pedido */
+.pedido-id {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 0.8em;
+    text-align: center;
+}
+
+/* Información del pedido */
+.pedido-info p {
+    margin: 0.5em 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Estado del pedido */
+.estado-pendiente {
+    color: #e63946;
+    font-weight: bold;
+}
+
+.estado-enviado {
+    color: black;
+    font-weight: bold;
+}
+
+.estado-entregado {
+    color: #38b000;
+    font-weight: bold;
+}
+
 /* HOVER */
 
 button.btn:hover {
@@ -223,6 +289,11 @@ button.btn:hover {
     border: solid 1px black;
 }
 
+a.btn-dark:hover {
+    background-color: white;
+    color: black;
+    border: solid 1px black;
+}
 .categorias img:hover {
     border-bottom-color: black; /* Cambia el borde a negro al hacer hover */
 
@@ -257,4 +328,8 @@ button.btn:hover {
 #colorDespegable:hover {
     /* Cambia el fondo al pasar el mouse */
     color: black; /* Cambia el color del texto a negro en hover */
+}
+
+.carrito-link:hover #carrito-icon {
+    filter: sepia(1100) saturate(700) hue-rotate(295deg); /* Ajuste para aproximarse a #FF0000 */
 }

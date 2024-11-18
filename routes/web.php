@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\TiendaController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\Admin\CreateProductoController;
 use App\Http\Controllers\Admin\DeleteProductoController;
 use App\Http\Controllers\Admin\UpdateStockController;
+
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -71,6 +74,22 @@ Route::get('/updateStock/category', [UpdateStockController::class, 'showProducts
 Route::post('/updateStock/{producto}', [UpdateStockController::class, 'updateStock'])->name('updateStock.update');
 
 // En este tenemos que poner el parametro ya que estamos enviandolo por el formulario y no recogiendolo desde el Controlador
+
+// Ruta para mostrar los pedidos
+Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos');
+Route::put('/pedidos/{id}/cambiar-estado', [PedidoController::class, 'cambiarEstado'])->name('cambiarEstadoPedido');
+
+// Ruta para el carrito
+use App\Http\Controllers\CarritoController;
+
+// Rutas para el carrito
+Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito');
+Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::post('/carrito/actualizar/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
+Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+
+
 
 // Ruta para procesar el registro. Esta ruta indica que cuando se envíe una solicitud POST a /register,
 // Laravel debe usar el método register del AuthController.)

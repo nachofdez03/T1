@@ -42,5 +42,11 @@ class Producto extends Model
         return $this->belongsTo(Talla::class);
     }
 
+    public function pedidos()
+    {
+        return $this->belongsToMany(Pedido::class, 'pedido_producto')
+            ->withPivot('cantidad', 'precio') // Campos adicionales de la tabla intermedia
+            ->withTimestamps();
+    }
 
 }

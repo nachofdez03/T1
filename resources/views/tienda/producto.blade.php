@@ -82,10 +82,10 @@
                         </form>
 
                              <!-- Formulario para "Añadir al carrito" -->
-                        <form action="{{ route('home', $producto->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('carrito.agregar', $producto->id) }}" method="POST" style="display: inline;">
                            
                                 @csrf
-                                <input type="hidden" name="cantidad" value="1" id="cantidadCompra">
+        
                     
                                 <button type="submit" class="w-100 botonProducto mt-4">Añadir al carrito</button>
                         </form>

@@ -148,6 +148,8 @@
         
                     {{-- Aquí pasamos la cantidad --}}
                     <input type="hidden" name="cantidad" value="{{ $cantidad }}">
+                    <input type="hidden" name="total" value="{{ $total }}">
+
         
                     <!-- Botón de Confirmar Compra -->
                     <button type="submit" class="btn btn-primary w-100 mt-4">Confirmar Compra</button>

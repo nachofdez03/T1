@@ -19,6 +19,9 @@
         <div class="contenedor">
             <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
             <nav class="menu">
+                <a href= "{{route('carrito')}}" class="carrito-link">
+                    <img src="{{ asset('images/Carrito.png') }}" alt="Carrito" id="carrito-icon">
+                </a>
                 <a href="">asdasdsa</a>
                 <a href="">asdasdas</a>
                 <a href="">asasdasd</a>
@@ -33,6 +36,7 @@
                             <a class="dropdown-item" href="{{ route('createProducts')}}" id="colorDespegable">Crear Productos</a>
                             <a class="dropdown-item" href="{{ route('deleteProducts')}}" id="colorDespegable">Borrar Productos</a>
                             <a class="dropdown-item" href="{{ route('updateStock')}}" id="colorDespegable">Modificar Stock</a>
+                            <a class="dropdown-item" href="{{ route('pedidos')}}" id="colorDespegable">Pedidos</a>
                             <a class="dropdown-item" href="#" id="colorDespegable">Usuarios</a>
                             <a class="dropdown-item" href="#" id="colorDespegable">Configuraciones</a>
                             <a class="dropdown-item" href="#" id="colorDespegable">Registros</a>
