@@ -54,17 +54,16 @@ class ComprarController extends Controller
             'nombre_cliente' => $request->input('nombre'),
             'email_cliente' => $request->input('correo'),
             'direccion' => $request->input('direccion'),
-            'total' => $request->input('total'),
+            'total' => $request->input(key: 'total'),
             'pedido_estado_id' => 1, // Estado inicial: "Pendiente"
         ]);
 
         // El método attach se utiliza en relaciones de tipo muchos a muchos en Laravel para asociar registros en tablas intermedias
         // Registrar el producto en la tabla intermedia `pedido_producto`
         $pedido->productos()->attach($producto->id, [
-            'cantidad' => $request->input('cantidad'),
+            'cantidad' => $request->input(key: 'cantidad'),
             'precio' => $producto->precio,
         ]);
-
 
         return redirect()->route('home')->with('success');
 

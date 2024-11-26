@@ -1,27 +1,15 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
-        <!-- Required meta tags -->
         <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-
-        <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <title>Crear Categoría</title>
     </head>
 
     <body>
-        <header>
+        <header>    
             <div class="contenedor">
                 <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
                 <nav class="menu">
@@ -57,49 +45,26 @@
                 </nav>            
             </div>
         </header>
-    
-        <main style="min-height: 100vh; padding-bottom: 7em">
 
-            <div class="container d-flex justify-content-center pdt-1 ">
-                <div class="">
-                    <img src="{{asset($producto->imagen)}}" alt="{{asset($producto->nombre)}}">
-                </div>
-
-                <div class="text-center informacion">
-                    <h5 style="font-size: 2em">{{$producto->nombre}}</h5>
-
-                    <p class="display-5 fw-bold" style="color: black; font-size: 2em; margin-top: 1em">${{ number_format($producto->precio, 2) }}</p>
-
-                    <div class="mt-4 botonProductoPadre" style="width: 50%; margin-top:10em">
-                    
-                        <form id="comprar-form-{{ $producto->id }}" action="{{ route('comprar', $producto->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            <label for="cantidad" class="form-label">Cantidad:</label>
-                            <input type="number" id="cantidad-{{ $producto->id }}" name="cantidad" class="form-control" min="1" 
-                                max="{{ $producto->stock }}" value="1" style="width: 5em; margin: auto; border: 1.2px solid">
-                            
-                            <!-- Botón para "Comprar" -->
-                            <button type="submit" class="w-100 botonProducto mt-4">Comprar</button>
-                        </form>
-
-                             <!-- Formulario para "Añadir al carrito" -->
-                        <form action="{{ route('carrito.agregar', $producto->id) }}" method="POST" style="display: inline;">
-                           
-                                @csrf
+        <main class="container mt-5" style="min-height: 75vh; padding-bottom: 7em">
+          <h2 class="mb-3 text-center mt-4">Crear Categoría</h2>
+            <div class="mt-5">
+                <form action="{{ route('createCategoria.store') }}" method="POST" enctype="multipart/form-data" class="FormCreateProductos">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre de la Categoría</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
         
-                    
-                                <button type="submit" class="w-100 botonProducto mt-4">Añadir al carrito</button>
-                        </form>
-
-               </div>
-                                    
-
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-4">Crear Categoría</button>
+                </form>
             </div>
-            {{-- <p>VISTA TIENDA/PRODUCTO</p>
-           <p>{{ $producto->nombre }}</p>
-           <p>{{ $producto->precio }}</p> --}}
-
         </main>
+
         <footer class="footer"> 
             <div class="SocialMedia">
               <div class="Síguenos">
@@ -111,6 +76,7 @@
                     <li><a><img src="{{ asset('images/Redes Sociales/Instagram.png') }}" class="fotoIcono" alt="Instagram"></a></li>
                     <li><a><img src="{{ asset('images/Redes Sociales/Youtube.png') }}" class="fotoIcono" alt="YouTube"></a></li>
                     <li><a><img src="{{ asset('images/Redes Sociales/Tik tok.png') }}" class="fotoIcono" alt="TikTok"></a></li>
+                    
                 </ul>
               </div>
             </div>
@@ -173,36 +139,36 @@
               </div>
     
         </footer>
-
         <script>
-            // JavaScript para controlar el menú desplegable
-            document.addEventListener("DOMContentLoaded", function() {
-                const dropdownToggle = document.getElementById("adminDropdown");
-                const dropdownMenu = document.getElementById("adminDropdownMenu");
-        
-                dropdownToggle.addEventListener("click", function(event) {
-                    event.preventDefault(); // Previene el comportamiento por defecto del enlace
-                    dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block"; // Alterna la visibilidad del menú
-                });
-        
-                // Cierra el menú si se hace clic fuera de él
-                document.addEventListener("click", function(event) {
-                    if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                        dropdownMenu.style.display = "none"; // Cierra el menú si se hace clic fuera de él
-                    }
-                });
-            });
-    
-                // Es un hover en vez de CSS con JS, cambia la misma imagen al pasar el raton o dejarlo de pasar
-                // Son la misma foto pero con diferente color ahi la diferencia que podemos apreciar
-                document.getElementById('carrito-icon').addEventListener('mouseover', function () {
-                this.src = "{{ asset('images/Carrito2.png') }}";});
-    
-                document.getElementById('carrito-icon').addEventListener('mouseout', function () {
-                this.src = "{{ asset('images/Carrito.png') }}";});
-    
-        </script>
+          // JavaScript para controlar el menú desplegable
+          document.addEventListener("DOMContentLoaded", function() {
+              const dropdownToggle = document.getElementById("adminDropdown");
+              const dropdownMenu = document.getElementById("adminDropdownMenu");
+      
+              dropdownToggle.addEventListener("click", function(event) {
+                  event.preventDefault(); // Previene el comportamiento por defecto del enlace
+                  dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block"; // Alterna la visibilidad del menú
+              });
+      
+              // Cierra el menú si se hace clic fuera de él
+              document.addEventListener("click", function(event) {
+                  if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                      dropdownMenu.style.display = "none"; // Cierra el menú si se hace clic fuera de él
+                  }
+              });
+          });
+  
+              // Es un hover en vez de CSS con JS, cambia la misma imagen al pasar el raton o dejarlo de pasar
+              // Son la misma foto pero con diferente color ahi la diferencia que podemos apreciar
+              document.getElementById('carrito-icon').addEventListener('mouseover', function () {
+              this.src = "{{ asset('images/Carrito2.png') }}";});
+  
+              document.getElementById('carrito-icon').addEventListener('mouseout', function () {
+              this.src = "{{ asset('images/Carrito.png') }}";});
+  
+      </script>
 
-
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     </body>
 </html>

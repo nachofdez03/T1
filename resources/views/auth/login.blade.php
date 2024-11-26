@@ -34,30 +34,32 @@
         <div class="contenedor">
             <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
             <nav class="menu">
-                <a href="">asdasdsa</a>
-                <a href="">asdasdas</a>
-                <a href="">asasdasd</a>
+                <a href= "{{route('carrito')}}" class="carrito-link">
+                    <img src="{{ asset('images/Carrito.png') }}" alt="Carrito" id="carrito-icon">
+                </a>
+                <a href="https://lol.fandom.com/wiki/T1">Leaguepedia</a>
                 <a href="{{ route('nosotros')}}">Sobre Nosotros</a>
                 <a href="{{ route('tienda')}}">Tienda</a>
 
                 @if(Auth::check())
                     @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
-                    <a href="">Administración</a>
+                    <div class="dropdown">
+                        <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
+                        <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
+                            <a class="dropdown-item" href="{{ route('createProducts')}}" id="colorDespegable">Crear Productos</a>
+                            <a class="dropdown-item" href="{{ route('deleteProducts')}}" id="colorDespegable">Borrar Productos</a>
+                            <a class="dropdown-item" href="{{ route('createCategoria') }}" id="colorDespegable">Crear Categoría</a>
+                            <a class="dropdown-item" href="{{ route('deleteCategorias') }}" id="colorDespegable">Borrar Categoría</a>
+                            <a class="dropdown-item" href="{{ route('updateStock')}}" id="colorDespegable">Modificar Stock</a>
+                            <a class="dropdown-item" href="{{ route('pedidos')}}" id="colorDespegable">Pedidos</a>
+
+                        </div>
+                    </div>
                     @endif
-              
-                
-              
-                <a href=""
-                {{-- Con el event.preventDefault() le decimos al navegador 
-                "No sigas el enlace. Vamos a hacer algo diferente". y debido a que el formulario solo
-                 se envia con un submit pues le damos al submit para que se envie y se active el action
-                 que es el metodo --}}
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Cerrar sesión
-                </a>
-        
+                <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a>
                 <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
                     @csrf
+                </form>
                 @else
                 <a href="{{ route('login') }}">Login</a>
                 @endif
@@ -65,7 +67,7 @@
         </div>
     </header>
 
-        <main class="login">
+        <main class="login" style="padding-bottom: 7em">
           <!-- Pills navs -->
           <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
             <li class="nav-item" role="presentation">
@@ -205,7 +207,110 @@
          
         </main>
 
+        <footer class="footer"> 
+          <div class="SocialMedia">
+            <div class="Síguenos">
+            </div>
+    
+            <div class="Iconos">
+              <ul class="lista_iconos">
+                <li><a><img src="{{ asset('images/Redes Sociales/Facebook.png') }}" class="fotoIcono" alt="Facebook"></a></li>
+                <li><a><img src="{{ asset('images/Redes Sociales/Instagram.png') }}" class="fotoIcono" alt="Instagram"></a></li>
+                <li><a><img src="{{ asset('images/Redes Sociales/Youtube.png') }}" class="fotoIcono" alt="YouTube"></a></li>
+                <li><a><img src="{{ asset('images/Redes Sociales/Tik tok.png') }}" class="fotoIcono" alt="TikTok"></a></li>                
+              </ul>
+            </div>
+          </div>
+  
+          <hr>
+  
+          <nav class="nav_footer">
+  
+              <div class="column">
+                <h3>LCK Roster</h3>
+                <div class="enlaces">
+                  <a href="">Doran</a>
+                  <a href="">Oner</a>
+                  <a href="">Faker</a>
+                  <a href="">Gumayusi</a>
+                  <a href="">Keria</a>
+            
+                </div>
+              </div>
+      
+              <div class="column">
+                <h3>LCK CL Roster</h3>
+                <div class="enlaces">
+                  <a href="">Dal</a>
+                  <a href="">Guwon</a>
+                  <a href="">Poby</a>
+                  <a href="">Smash</a>
+                  <a href="">Rekkles</a>
+                  <a href="">Cloud</a>
+                </div>
+              </div>
+      
+              <div class="column">
+                <h3>Valorant Roster</h3>
+                <div class="enlaces">
+                  <a href="">Sylvan</a>
+                  <a href="">Izu</a>
+                  <a href="">BuZz</a>
+                  <a href="">Meteor</a> 
+                  <a href="">stax</a>  
+                  <a href="">carpe</a>  
+  
+                </div>
+              </div>
+      
+              <div class="column">
+                <h3>Information</h3>
+                <div class="enlaces">
+                  <a href="">Shop</a>
+                  <a href="">T1 Channel</a>
+                  <a href="">Calendar</a>
+                  <a href="">Login</a>      
+                </div>
+              </div>
+      
+            </nav>
+  
+            <div class="footerLast" style="background-color: black">
+              <p>COPYRIGHTⓒ2024 T1 SHOP. ALL RIGHTS RESERVERED.</p>
+            </div>
+  
+      </footer>
+
         <!-- Bootstrap JavaScript Libraries -->
+
+        <script>
+          // JavaScript para controlar el menú desplegable
+          document.addEventListener("DOMContentLoaded", function() {
+              const dropdownToggle = document.getElementById("adminDropdown");
+              const dropdownMenu = document.getElementById("adminDropdownMenu");
+      
+              dropdownToggle.addEventListener("click", function(event) {
+                  event.preventDefault(); // Previene el comportamiento por defecto del enlace
+                  dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block"; // Alterna la visibilidad del menú
+              });
+      
+              // Cierra el menú si se hace clic fuera de él
+              document.addEventListener("click", function(event) {
+                  if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                      dropdownMenu.style.display = "none"; // Cierra el menú si se hace clic fuera de él
+                  }
+              });
+          });
+  
+              // Es un hover en vez de CSS con JS, cambia la misma imagen al pasar el raton o dejarlo de pasar
+              // Son la misma foto pero con diferente color ahi la diferencia que podemos apreciar
+              document.getElementById('carrito-icon').addEventListener('mouseover', function () {
+              this.src = "{{ asset('images/Carrito2.png') }}";});
+  
+              document.getElementById('carrito-icon').addEventListener('mouseout', function () {
+              this.src = "{{ asset('images/Carrito.png') }}";});
+  
+      </script>
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -221,23 +326,90 @@
             type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
         ></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              // Verifica si hay errores en la sesión (esto lo maneja Laravel)
+              @if ($errors->any())
+                  var hasRegisterErrors = false;
+      
+                  // Itera sobre los errores para identificar si son del formulario de registro
+                  @foreach ($errors->keys() as $field)
+                      if (['dni', 'nombre', 'apellido', 'correo', 'password', 'password_confirmation'].includes('{{ $field }}')) {
+                          hasRegisterErrors = true;
+                      }
+                  @endforeach
+      
+                  // Cambia a la pestaña de registro si hay errores de ese formulario
+                  if (hasRegisterErrors) {
+                      var registerTab = new bootstrap.Tab(document.querySelector('#tab-register'));
+                      registerTab.show();
+                  }
+              @endif
+          });
+      </script>
         
 
     </body>
 </html>
 
+{{-- VALIDACION --}}
+{{-- <script src="{{ asset('js/validation.js') }}"></script> --}}
 
-{{-- <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // Verifica si hay errores en la sesión (esto lo maneja Laravel)
-      @if ($errors->any())
-          // Activa la pestaña de registro.
-          var registerTab = new bootstrap.Tab(document.querySelector('#tab-register'));
-          registerTab.show();
-      @endif
-  });
-</script> --}}
+<script>
+      document.getElementById('registro-form').addEventListener('submit', function(event) {
+        const nombre = document.getElementById('nombre').value.trim();
+        const correo = document.getElementById('correo').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const passwordConfirm = document.getElementById('password_confirmation').value.trim();
+        let valid = true;
 
+        // Reiniciar mensajes de error
+        document.querySelectorAll('.error').forEach(el => el.remove());
+
+        if (!nombre) {
+            valid = false;
+            showError('nombre', 'El nombre completo es requerido.');
+        } else if (nombre.length > 255) {
+            valid = false;
+            showError('nombre', 'El nombre completo no puede exceder los 255 caracteres.');
+        }
+        if (!correo) {
+            valid = false;
+            showError('correo', 'El correo electrónico es requerido.');
+        } else if (!validateEmail(correo)) {
+            valid = false;
+            showError('correo', 'El formato del correo electrónico es incorrecto.');
+        }
+        if (!password) {
+            valid = false;
+            showError('password', 'La contraseña es requerida.');
+        } else if (password.length < 8) {
+            valid = false;
+            showError('password', 'La contraseña debe tener al menos 8 caracteres.');
+        }
+        if (password !== passwordConfirm) {
+            valid = false;
+            showError('password_confirmation', 'Las contraseñas no coinciden.');
+        }
+
+        if (!valid) {
+            event.preventDefault(); // Evita el envío si hay errores
+        }
+    });
+
+    function showError(field, message) {
+        const input = document.getElementById(field);
+        const error = document.createElement('div');
+        error.className = 'error text-danger';
+        error.innerText = message;
+        input.parentNode.insertBefore(error, input.nextSibling);
+    }
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+</script>
 
 @if ($errors->any())
     <div class="alert alert-danger">

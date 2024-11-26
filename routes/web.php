@@ -5,6 +5,11 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\Admin\CreateProductoController;
 use App\Http\Controllers\Admin\DeleteProductoController;
 use App\Http\Controllers\Admin\UpdateStockController;
+use App\Http\Controllers\Admin\CreateCategoriaController;
+use App\Http\Controllers\Admin\DeleteCategoriaController;
+
+
+use App\Http\Controllers\CarritoController;
 
 
 
@@ -64,10 +69,17 @@ Route::post('/confirmar/{id}', [ComprarController::class, 'confirmar'])->name('c
 Route::get('/createProductos', [CreateProductoController::class, 'showForm'])->name('createProducts');
 Route::post('/createProductos', [CreateProductoController::class, 'store'])->name('createProducts.store');
 
+Route::get('/createCategoria', [CreateCategoriaController::class, 'showForm'])->name('createCategoria');
+Route::post('/createCategoria', [CreateCategoriaController::class, 'store'])->name('createCategoria.store');
+
 // Ruta para mostrar la vista de categorías, para mostrar productos de la categoría seleccionada, para eliminar un producto específico
 Route::get('/deleteProductos', [DeleteProductoController::class, 'showCategories'])->name('deleteProducts');
 Route::get('/deleteProductos/categoria', [DeleteProductoController::class, 'showProductsByCategory'])->name('deleteProducts.filter');
 Route::post('/deleteProductos/{producto}/eliminar', [DeleteProductoController::class, 'destroy'])->name('deleteProducts.destroy');
+
+Route::get('deleteCategorias', [DeleteCategoriaController::class, 'showCategories'])->name('deleteCategorias');
+Route::get('deleteCategorias/filter', [DeleteCategoriaController::class, 'showCategoriesByFilter'])->name('deleteCategorias.filter');
+Route::post('deleteCategorias/{id}', [DeleteCategoriaController::class, 'destroy'])->name('deleteCategorias.destroy');
 
 Route::get('/updateStock', [UpdateStockController::class, 'showCategories'])->name('updateStock');
 Route::get('/updateStock/category', [UpdateStockController::class, 'showProductsByCategory'])->name('updateStock.category');
@@ -79,8 +91,7 @@ Route::post('/updateStock/{producto}', [UpdateStockController::class, 'updateSto
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos');
 Route::put('/pedidos/{id}/cambiar-estado', [PedidoController::class, 'cambiarEstado'])->name('cambiarEstadoPedido');
 
-// Ruta para el carrito
-use App\Http\Controllers\CarritoController;
+
 
 // Rutas para el carrito
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito');
@@ -88,6 +99,9 @@ Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->nam
 Route::post('/carrito/actualizar/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
 Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+Route::get('carrito/resumen', [CarritoController::class, 'mostrarResumen'])->name('carrito.comprar');
+Route::post('/procesar-compra', [CarritoController::class, 'procesarCompra'])->name('procesarCompra');
+
 
 
 

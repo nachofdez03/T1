@@ -1,7 +1,6 @@
 body {
     display: grid;
     grid-template-rows: auto 1fr;
-    min-height: 205vh;
 }
 
 body.bodyLogin {
@@ -66,7 +65,7 @@ nav a:hover {
 
 .menu {
     display: flex;
-    gap: 1em;
+    gap: 1.4em;
 }
 
 .Carrusel .contenedor {
@@ -76,6 +75,174 @@ nav a:hover {
 .Carrusel .contenedor img {
     width: 100%;
 }
+
+.info-box {
+    width: 100%;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black; /* Fondo negro */
+}
+
+.info-box p {
+    margin: 0;
+    font-size: 1.5em;
+    color: white; /* Texto pequeño con color gris */
+    text-shadow: 0.1em 0.1em 0.2em red; /* Sombra roja */
+}
+
+.info-box h2 {
+    font-size: 3em;
+    color: white;
+    text-shadow: 0.1em 0.1em 0.2em red; /* Sombra roja */
+}
+
+/* Contenedor principal que usa Flexbox para alinear en fila */
+.containerPhotos {
+    background-color: black;
+    display: flex; /* Alinea los elementos en una fila */
+    justify-content: space-between; /* Espacio entre las imágenes */
+    gap: 2em; /* Espacio entre las imágenes, en em */
+    padding: 2em; /* Espacio alrededor del contenedor */
+    box-sizing: border-box;
+}
+
+/* Contenedor para cada imagen */
+.image-box {
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Estilos para la primera imagen (35%) */
+.photo-1 {
+    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto */
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
+    border-radius: 0.625em; /* Bordes redondeados (10px) */
+}
+
+/* Estilos para la segunda imagen (65%) */
+.photo-2 {
+    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.625em; /* Bordes redondeados */
+}
+
+/* El contenedor de la primera imagen ocupa el 35% del ancho */
+.image-box:nth-child(1) {
+    width: 31%;
+}
+
+/* El contenedor de la segunda imagen ocupa el 65% del ancho */
+.image-box:nth-child(2) {
+    width: 69%;
+}
+
+/* Botón debajo de cada imagen */
+.shop-button {
+    background-color: #e30a2d;
+    color: white;
+    display: block;
+    margin-top: 0.625em; /* Espacio entre la imagen y el botón (10px) */
+    text-align: center;
+    padding: 0.625em 1.25em; /* Padding para el botón en em */
+    border: none;
+    border-radius: 0.3125em; /* Bordes redondeados (5px) */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em; /* Tamaño de fuente de 1em */
+}
+
+.map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido en el eje horizontal */
+    width: 100%;
+    height: 72vh; /* Altura que ocupa el div */
+    padding-top: 3em;
+    background-color: black;
+}
+
+.map-title {
+    font-size: 3em;
+    font-weight: bold;
+    color: red;
+    color: white; /* Texto pequeño con color gris */
+    margin-bottom: 1em; /* Espacio debajo del título */
+}
+
+#map {
+    width: 70%; /* El mapa ocupará el 100% del ancho disponible */
+    height: 70vh; /* El mapa ocupará el 60% de la altura del contenedor */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+}
+
+/* FOOTER */
+
+.footer {
+    padding-top: 2em;
+    background-color: black;
+    color: white;
+}
+
+.SocialMedia {
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    align-items: center;
+}
+
+.fotoIcono {
+    width: 65%;
+}
+.lista_iconos {
+    display: flex;
+}
+
+.lista_iconos li {
+    list-style-type: none; /* Elimina las viñetas (puntos) de la lista */
+}
+.Iconos {
+    margin-top: 1em;
+}
+
+.nav_footer {
+    display: flex;
+    height: 50%;
+    gap: 9em;
+    justify-content: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: 1em;
+}
+
+.enlaces {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.nav_footer .enlaces a {
+    color: white;
+}
+
+.footerLast {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+    height: 20vh;
+    text-align: center;
+}
+/* FUNCIONALIDAD  */
 
 .login {
     display: flex;
@@ -110,6 +277,17 @@ nav a:hover {
     font-size: 0.9em;
 }
 
+/* Clase personalizada para dividir en 5 columnas */
+.col-lg-custom {
+    flex: 0 0 20%; /* Cada columna ocupa el 20% del ancho */
+    max-width: 20%; /* Máximo ancho del 20% */
+}
+
+.categorias-row {
+    display: flex;
+    flex-wrap: wrap; /* Asegura que los elementos bajen de línea si no caben */
+}
+
 /* ESTILOS DE BOOTSTRAP SOBREESCRITOS*/
 
 main ul {
@@ -125,7 +303,7 @@ button.btn {
 }
 
 .productos {
-    margin-top: 10em;
+    margin-top: 8em;
     cursor: pointer;
 }
 
@@ -289,6 +467,17 @@ button.btn:hover {
     border: solid 1px black;
 }
 
+.shop-button:hover {
+    background-color: #ed5656;
+    color: white;
+}
+
+button.btn:hover {
+    background-color: white;
+    color: black;
+    border: solid 1px black;
+}
+
 a.btn-dark:hover {
     background-color: white;
     color: black;
@@ -330,6 +519,13 @@ a.btn-dark:hover {
     color: black; /* Cambia el color del texto a negro en hover */
 }
 
-.carrito-link:hover #carrito-icon {
-    filter: sepia(1100) saturate(700) hue-rotate(295deg); /* Ajuste para aproximarse a #FF0000 */
+.enlaces a:hover,
+.footerLast p:hover {
+    text-decoration-line: underline;
+}
+
+div .fotoIcono:hover {
+    width: 75%;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }

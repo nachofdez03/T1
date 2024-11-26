@@ -38,6 +38,8 @@ class AuthController extends Controller
             'correo' => $validatedData['correo'],
             'password' => Hash::make($validatedData['password']), // Encriptar la contraseña
         ]);
+        Auth::login($usuario);
+
 
         // Redireccionar o devolver una respuesta
         return redirect()->route('home')->with('success', 'Usuario registrado exitosamente');

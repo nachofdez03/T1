@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras</title>
+    <title>Eliminar Categorías</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
+   
+    <style>
+
+
+        .card-img-top {
+            width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+            height: 12em; /* Ajusta la altura de la imagen */
+            object-fit: contain; /* Mantiene la proporción de la imagen y la ajusta */
+            margin: 0 auto; /* Centra la imagen */
+        }
+
+        /* Asegurarse de que las tarjetas tengan la misma altura */
+        .card-body {
+            flex-grow: 1; /* Hace que el contenido del cuerpo de la tarjeta ocupe el espacio restante */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Espacia el título y el botón */
+        }
+    
+        .col-md-4 {
+            margin-bottom: 0rem; /* Espacio adicional entre las filas */
+        }
+      
+    </style>
 </head>
 <body>
     <header>
@@ -50,68 +69,33 @@
         </div>
     </header>
 
-    <main style="min-height: 80vh; padding-bottom: 7em">
-        <div class="contenedor">
-            <h2 class="mb-4 text-center" style="margin-top: 1em">Carrito de Compras</h2>
-
-            @if (session('exito'))
-                <div class="alert alert-success">
-                    {{ session('exito') }}
-                </div>
-            @endif
-
-            @if (count($carrito) > 0)
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Imagen</th>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($carrito as $id => $producto)
-                            <tr>
-                                <td><img src= "{{asset($producto['imagen'])}} " alt="{{ $producto['nombre'] }}" class=""></td>
-                                <td>{{ $producto['nombre'] }}</td>
-                                <td>{{ number_format($producto['precio'], 2) }} €</td>
-                                <td>
-                                    <form action="{{ route('carrito.actualizar', $id) }}" method="POST">
-                                        @csrf
-                                        <input type="number" name="cantidad" value="{{ $producto['cantidad'] }}" min="1" required>
-                                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                                    </form>
-                                </td>
-                                <td>{{ number_format($producto['precio'] * $producto['cantidad'], 2) }} €</td>
-                                <td>
-                                    <form action="{{ route('carrito.eliminar', $id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-                <div class="total">
-                    <h3>Total: {{ number_format(array_sum(array_map(function ($producto) {
-                        return $producto['precio'] * $producto['cantidad'];
-                    }, $carrito)), 2) }} €</h3>
-                </div>
-
-                <div class="acciones">
-                    <a href="{{ route('carrito.vaciar') }}" class="btn btn-dark">Vaciar carrito</a>
-                    <a href="{{ route('carrito.comprar')}}" class="btn btn-dark">Proceder a la compra</a>
-                </div>
-            @else
-                <p class="text-center">No hay productos en el carrito.</p>
-            @endif
-        </div>
+    <main class="container mt-5" style="padding-bottom: 7em">
+        <h1 class="text-center">Eliminar Categorías</h1>
+    
+        <!-- Mostrar categorías de la categoría seleccionada -->
+        @if(isset($categorias) && count($categorias) > 0)
+            <div class="row" >
+                @foreach($categorias as $categoria)
+                    <div class="col-md-3 mb-4" style=" margin-top: 4em;">
+                        <div class="card h-100 text-center " style=" margin-bottom: 4rem;">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="{{ asset($categoria->imagen) }}" class="card-img-top" alt="{{ $categoria->nombre }}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $categoria->nombre }}</h5>
+                                <form action="{{ route('deleteCategorias.destroy', $categoria->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta categoría?');">
+                                    @csrf
+                                    @method('POST')
+                                    <button type="submit" class="btn btn-danger w-100" style="border-block-color: black">Eliminar Categoría</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @elseif(isset($categorias))
+            <p class="text-center mt-4">No hay categorías disponibles.</p>
+        @endif
     </main>
 
     <footer class="footer"> 
@@ -124,7 +108,7 @@
                 <li><a><img src="{{ asset('images/Redes Sociales/Facebook.png') }}" class="fotoIcono" alt="Facebook"></a></li>
                 <li><a><img src="{{ asset('images/Redes Sociales/Instagram.png') }}" class="fotoIcono" alt="Instagram"></a></li>
                 <li><a><img src="{{ asset('images/Redes Sociales/Youtube.png') }}" class="fotoIcono" alt="YouTube"></a></li>
-                <li><a><img src="{{ asset('images/Redes Sociales/Tik tok.png') }}" class="fotoIcono" alt="TikTok"></a></li>                
+                <li><a><img src="{{ asset('images/Redes Sociales/Tik tok.png') }}" class="fotoIcono" alt="TikTok"></a></li>     
             </ul>
           </div>
         </div>
@@ -217,6 +201,7 @@
 
     </script>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

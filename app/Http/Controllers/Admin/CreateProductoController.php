@@ -55,6 +55,6 @@ class CreateProductoController extends Controller
         $producto->save();
 
         // Redirigir con mensaje de éxito (opcional)
-        // return redirect()->route('admin.products.index')->with('success', 'Producto creado exitosamente');
+        return redirect()->route('createProducts')->with('success', 'Producto creado exitosamente');
     }
 }
