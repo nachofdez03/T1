@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Actualizar Stock</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -16,7 +16,8 @@
                 integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
                 crossorigin="anonymous"
             />
-       
+        <link rel="icon" href="{{ asset('images/T1.png') }}" type="image/x-icon">
+
     </head>
     <body>
     

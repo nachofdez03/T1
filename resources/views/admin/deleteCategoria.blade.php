@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Eliminar Categorías</title>
+    <title>Borrar Categoria</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
-   
+    <link rel="icon" href="{{ asset('images/T1.png') }}" type="image/x-icon">
+    
+
     <style>
 
 

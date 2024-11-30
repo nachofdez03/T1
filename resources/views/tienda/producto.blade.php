@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Producto</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -18,6 +18,8 @@
         />
 
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link rel="icon" href="{{ asset('images/T1.png') }}" type="image/x-icon">
+
     </head>
 
     <body>

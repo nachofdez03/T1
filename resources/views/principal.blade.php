@@ -11,10 +11,9 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="icon" href="{{ asset('images/T1.png') }}" type="image/x-icon">
 
-
-   
 </head>
 <body style="background-color: black">
 
@@ -51,7 +50,8 @@
                 @else
                 <a href="{{ route('login') }}">Login</a>
                 @endif
-            </nav>            
+            </nav>    
+                        
         </div>
                 {{-- Con el event.preventDefault() le decimos al navegador 
                 "No sigas el enlace. Vamos a hacer algo diferente". y debido a que el formulario solo
@@ -61,10 +61,19 @@
 
     <main>
         <div class="Carrusel">
-            <div class="contenedor">
-                <img src="{{asset('images/Carrusel1.jpg')}}" alt="">
+            <div >
+                <div class="carrusel-contenedor-imagenes">
+                    <img src="{{ asset('images/T1Carrusel.png') }}" alt="Imagen 1">
+                    <img src="{{ asset('images/T1Carrusel2.jpg') }}" alt="Imagen 1">
+                    <img src="{{ asset('images/T1Carrusel4.jpg') }}" alt="Imagen 1">
+
+                </div>
+                
+                <!-- Controles de navegación -->
+                <button class="prev" onclick="moverCarrusel(-1)">&#10094;</button>
+                <button class="next" onclick="moverCarrusel(1)">&#10095;</button>
             </div>
-        </div>
+
         <div class="info-box">
             <p>ESPORTS APPAREL</p>
             <h2>T1 COLLECTION</h2>
@@ -80,15 +89,97 @@
                 <a href="{{ route('tienda') }}" class="shop-button">Ir a la Tienda</a>
             </div>
         </div>
-
-        <div class="map-container">
-           <div id="map">
+        <div class="info-box" style="background-color: black">
+            <p>CHECK</p>
+            <h2>OUR LATEST VIDEOS
+            </h2>
+        </div>
+        <div class="youtube-videos" style="background: linear-gradient(
+        to bottom,
+        black,
+        #e30a2d";>
+            <div class="video-grid">
+                <!-- Video 1 -->
+                <iframe 
+                    src="https://www.youtube.com/embed/fi4XrnTy54s" 
+                    title="Video 1" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                
+                <!-- Video 2 -->
+                <iframe 
+                    src="https://www.youtube.com/embed/MPcUGG8zvrc" 
+                    title="Video 2" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                
+                <!-- Video 3 -->
+                <iframe 
+                    src="https://www.youtube.com/embed/lTMv27YJc_I" 
+                    title="Video 3" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                
+                <!-- Video 4 -->
+                <iframe 
+                    src="https://www.youtube.com/embed/yq6Umbfcm7c" 
+                    title="Video 4" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                
+                <!-- Video 5 -->
+                <iframe 
+                    src="https://www.youtube.com/embed/GagsR5-bdLs" 
+                    title="Video 5" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                
+                <!-- Video 6 -->
+                <iframe 
+                    src="https://www.youtube.com/embed/MviIDKKvex0" 
+                    title="Video 6" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
 
-        {{-- 
-        <div style="padding-top: 4em">
+        <div class="photo-gallery">
+            <h2 style="font-size: 3em; color:white;">WHERE T1 COMPETE</h2>
+            <div class="photo-row">
+                <!-- Foto 1 -->
+                <img src={{ asset('images/games/lck.jpg')}} alt="Foto 1">
+                
+                <!-- Foto 2 -->
+                <img src={{ asset('images/games/lckcl.jpg')}} alt="Foto 2">
+                
+                <!-- Foto 3 -->
+                <img src={{ asset('images/games/val.jpg')}} alt="Foto 3">
+                
+                <!-- Foto 4 -->
+                <img src={{ asset('images/games/cc.jpg')}} alt="Foto 4">
+            </div>
+        </div>
+        
+        
+        
+
+{{-- 
+        <div>
             <img src="{{ asset('images/Publicidad.png') }}" style="max-width: 100%; " alt="">
+        </div>
+         --}}
+        {{-- <div>
+        <img src="{{ asset('images/Diseño.png') }}" alt="" style="width: 100%; height:auto">
         </div> --}}
+
+        {{-- 
+        --}}
         
       
         {{-- <!-- Mensajes de éxito -->
@@ -216,6 +307,33 @@
     marker.bindPopup("<b>Tienda Física</b>").openPopup();
 </script>
 
+<script>
+    let indiceActual = 0;
+
+function moverCarrusel(direccion) {
+    const carrusel = document.querySelector('.carrusel-contenedor-imagenes');
+    const totalImagenes = document.querySelectorAll('.carrusel-contenedor-imagenes img').length;
+
+    // Actualizar índice de la imagen activa
+    indiceActual += direccion;
+
+    // Reiniciar al inicio o final si se sale de los límites
+    if (indiceActual < 0) {
+        indiceActual = totalImagenes - 1;
+    } else if (indiceActual >= totalImagenes) {
+        indiceActual = 0;
+    }
+
+    // Desplazar el carrusel
+    const desplazamiento = -indiceActual * 33.33; // Desplazamiento en porcentaje (cada imagen ocupa el 33.33%)
+    carrusel.style.transform = `translateX(${desplazamiento}%)`;
+}
+
+setInterval(() => {
+    moverCarrusel(1);
+}, 5000); // Cambia la imagen cada 5 segundos
+
+</script>
     
 </body>
 </html>

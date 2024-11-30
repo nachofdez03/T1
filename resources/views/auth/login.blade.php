@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Login</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -23,8 +23,8 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
              rel="stylesheet"
         />
+        <link rel="icon" href="{{ asset('images/T1.png') }}" type="image/x-icon">
 
-        
 
     </head>
 

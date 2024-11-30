@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-        <title>Crear Categoría</title>
+        <title>Crear Categoria</title>
+        <link rel="icon" href="{{ asset('images/T1.png') }}" type="image/x-icon">
+
     </head>
 
     <body>

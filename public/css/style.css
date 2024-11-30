@@ -68,12 +68,73 @@ nav a:hover {
     gap: 1.4em;
 }
 
+.Carrusel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carrusel-contenedor-imagenes {
+    display: flex;
+    width: 300%; /* Aseguramos que el contenedor de las imágenes ocupe el ancho total de tres imágenes */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrusel-contenedor-imagenes img {
+    width: 33.33%; /* Asegura que cada imagen ocupe el 33% del ancho del carrusel */
+    object-fit: cover; /* Mantiene la proporción de la imagen sin deformarla */
+    height: 100%; /* Ajusta la altura para que sea del mismo tamaño que el contenedor */
+}
+
+.next,
+.prev {
+    position: absolute;
+    top: 10%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 0.2em;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 0.5em;
+}
+
+.next {
+    right: 0.5em;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+/* Estilo del contenedor principal del carrusel */
 .Carrusel .contenedor {
     width: 100%;
 }
 
 .Carrusel .contenedor img {
     width: 100%;
+}
+
+/* Flecha izquierda */
+.carrusel-flecha.izquierda {
+    left: 10px; /* Separación desde el borde izquierdo */
+}
+
+/* Flecha derecha */
+.carrusel-flecha.derecha {
+    right: 10px; /* Separación desde el borde derecho */
+}
+
+/* Estilo al pasar el cursor sobre las flechas */
+.carrusel-flecha:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro */
 }
 
 .info-box {
@@ -83,25 +144,42 @@ nav a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: black; /* Fondo negro */
+    background-color: black; /* Fondo gris: 373333 */
+}
+
+.info-box2 {
+    width: 100%;
+    height: 7em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #373333; /* Fondo gris: 373333 */
+}
+
+.info-box2 h2 {
+    font-size: 3.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0.1em 0.1em 0.2em red; Sombra roja */
 }
 
 .info-box p {
     margin: 0;
     font-size: 1.5em;
     color: white; /* Texto pequeño con color gris */
-    text-shadow: 0.1em 0.1em 0.2em red; /* Sombra roja */
+    /* text-shadow: 0.1em 0.1em 0.2em red; Sombra roja */
 }
 
 .info-box h2 {
     font-size: 3em;
     color: white;
-    text-shadow: 0.1em 0.1em 0.2em red; /* Sombra roja */
+
+    /* text-shadow: 0.1em 0.1em 0.2em red; Sombra roja */
 }
 
 /* Contenedor principal que usa Flexbox para alinear en fila */
 .containerPhotos {
-    background-color: black;
+    background: black;
     display: flex; /* Alinea los elementos en una fila */
     justify-content: space-between; /* Espacio entre las imágenes */
     gap: 2em; /* Espacio entre las imágenes, en em */
@@ -156,14 +234,155 @@ nav a:hover {
     font-size: 1em; /* Tamaño de fuente de 1em */
 }
 
+/* Container for the videos */
+.youtube-videos {
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Grid layout for the video iframes */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em; /* Equal spacing between grid items */
+    justify-items: center;
+    max-width: 80em;
+    margin: auto;
+    padding: 1em; /* Symmetrical padding around the grid */
+}
+
+/* Styling for each iframe */
+.video-grid iframe {
+    width: 100%;
+    max-width: 40em;
+    aspect-ratio: 16/9; /* Maintain the aspect ratio */
+    border-radius: 8px; /* Smooth rounded corners */
+    border: none;
+}
+
+/* Styles for the photo gallery */
+.photo-gallery {
+    background: linear-gradient(
+        to bottom,
+        #e30a2d,
+        black
+    ); /* Gradiente de arriba a abajo */
+    text-align: center;
+    padding: 2em 0; /* Padding en unidades em */
+}
+
+.photo-gallery h2 {
+    color: white;
+    font-size: 2.5em; /* Tamaño de fuente más grande para el título */
+    margin-bottom: 1.5em;
+}
+
+/* Container for the row of photos */
+.photo-row {
+    display: flex;
+    justify-content: space-between; /* Espacio entre las fotos */
+    gap: 2em; /* Mayor espacio entre fotos */
+    max-width: 100%; /* Usar el ancho completo del contenedor */
+    margin: auto;
+    padding: 0 2em; /* Padding a los lados */
+}
+
+/* Styling for each photo */
+.photo-row img {
+    width: 100%; /* Las imágenes ocupan el ancho de su contenedor */
+    max-width: 20em; /* Limitar cada imagen a un máximo de 18em de ancho */
+    height: auto; /* Mantener la relación de aspecto */
+    border-radius: 0.5em; /* Bordes redondeados ligeros */
+    transition: transform 0.3s ease; /* Efecto suave al pasar el ratón */
+}
+
+/* Añadir un efecto al pasar el ratón */
+.photo-row img:hover {
+    transform: scale(1.05); /* Escalar ligeramente la imagen */
+}
+
+.about-section h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+.about-section p {
+    font-size: 1.2em;
+    margin-bottom: 1.5em;
+}
+.content {
+    max-width: 70em;
+    margin: 0 auto;
+    text-align: left;
+    background: white;
+    padding: 2em;
+    border-radius: 0.5em;
+    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+}
+.content h2 {
+    color: #e30a2d;
+    font-size: 1.8em;
+}
+.content p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+}
+.content ul {
+    width: 100%;
+    margin: 1.5em 0;
+    padding-left: 1.5em;
+    color: #333;
+}
+.content ul li {
+    margin-bottom: 0.8em;
+}
+.gallery {
+    max-width: 75em;
+    margin: 3em auto;
+    padding: 0 1em;
+}
+.gallery h2 {
+    text-align: center;
+    color: #e30a2d;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+.gallery p {
+    text-align: center;
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 1.5em;
+}
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+.gallery-item {
+    width: 18em;
+    border-radius: 0.5em;
+    overflow: hidden;
+    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+}
+.gallery-item img {
+    width: 100%;
+    height: 12em;
+    object-fit: cover;
+}
+.gallery-item h3 {
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+    padding: 0.5em 0;
+}
 .map-container {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra el contenido en el eje horizontal */
     width: 100%;
-    height: 72vh; /* Altura que ocupa el div */
     padding-top: 3em;
-    background-color: black;
+    background: black;
 }
 
 .map-title {
@@ -528,4 +747,27 @@ div .fotoIcono:hover {
     width: 75%;
     transition: all 0.2s ease;
     cursor: pointer;
+}
+.video-grid iframe:hover {
+    transform: scale(1.05); /* Zoom del 5% al pasar el ratón */
+    transition: all 0.4s ease;
+}
+
+/* RESPONSIVE */
+
+/* MOVIL */
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+    .footer .row {
+        text-align: center;
+    }
+    .image-box {
+        margin-bottom: 15px;
+    }
+    .shop-button {
+        font-size: 14px;
+        padding: 8px;
+    }
 }

@@ -4,106 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>About Us</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <style>
-          body {
-            font-family: Arial, sans-serif;
+    <link rel="icon" href="{{ asset('images/T1.png') }}" type="image/x-icon">
+</head>
+        
+<body style=" font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-        }
-        .about-section {
-            background-color: #E30A2D;
-            color: white;
-            padding: 2em;
-            text-align: center;
-        }
-        .about-section h1 {
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-        }
-        .about-section p {
-            font-size: 1.2em;
-            margin-bottom: 1.5em;
-        }
-        .content {
-            max-width: 70em;
-            margin: 0 auto;
-            text-align: left;
-            background: white;
-            padding: 2em;
-            border-radius: 0.5em;
-            box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
-        }
-        .content h2 {
-            color: #E30A2D;
-            font-size: 1.8em;
-        }
-        .content p {
-            font-size: 1em;
-            line-height: 1.6;
-            color: #333;
-        }
-        .content ul {
-            width: 100%;
-            margin: 1.5em 0;
-            padding-left: 1.5em;
-            color: #333;
-        }
-        .content ul li {
-
-            margin-bottom: 0.8em;
-        }
-        .gallery {
-            max-width: 75em;
-            margin: 3em auto;
-            padding: 0 1em;
-        }
-        .gallery h2 {
-            text-align: center;
-            color: #E30A2D;
-            font-size: 2em;
-            margin-bottom: 1em;
-        }
-        .gallery p {
-            text-align: center;
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 1.5em;
-        }
-        .gallery-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1em;
-            justify-content: center;
-        }
-        .gallery-item {
-            width: 18em;
-            border-radius: 0.5em;
-            overflow: hidden;
-            box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 12em;
-            object-fit: cover;
-        }
-        .gallery-item h3 {
-            text-align: center;
-            font-size: 1.2em;
-            color: #333;
-            padding: 0.5em 0;
-        }
-        </style>
-</head>
-<body>
+            background-color: #f9f9f9;">
 
     <header>
         <div class="contenedor">
@@ -144,9 +60,9 @@
 
     <main>
         
-    <div class="about-section">
-        <h1>Sobre nosotros</h1>
-        <p>Descubre quienes somos y nuestra trayectoria.</p>
+    <div class="info-box" style="background-color: #e30a2d">
+        <h1 style="color: white">Sobre nosotros</h1>
+       
     </div>
     
     <div class="content">
@@ -194,6 +110,16 @@
             </div>
         </div>
     </div>
+    <div class="info-box2"  style="background-color: white">
+        <h2 style="color: BLACK">LOCALIZATION
+        </h2>
+    </div> 
+    <div class="map-container" style="background: linear-gradient(
+        to bottom,
+        white,
+        black">
+           <div id="map">
+        </div>
     </main>
 
     <footer class="footer"> 
@@ -270,6 +196,7 @@
 
     </footer>
 
+          
     <script>
         // JavaScript para controlar el menú desplegable
         document.addEventListener("DOMContentLoaded", function() {
@@ -298,6 +225,48 @@
             this.src = "{{ asset('images/Carrito.png') }}";});
 
     </script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+    var map = L.map('map').setView([37.512402, 127.042834], 13);  // Puedes cambiar las coordenadas aquí
+    
+    // Usar OpenStreetMap como capa base
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    // Añadir un marcador en las mismas coordenadas
+    var marker = L.marker([37.512402, 127.042834]).addTo(map);
+    marker.bindPopup("<b>Tienda Física</b>").openPopup();
+</script>
+
+<script>
+    let indiceActual = 0;
+
+function moverCarrusel(direccion) {
+    const carrusel = document.querySelector('.carrusel-contenedor-imagenes');
+    const totalImagenes = document.querySelectorAll('.carrusel-contenedor-imagenes img').length;
+
+    // Actualizar índice de la imagen activa
+    indiceActual += direccion;
+
+    // Reiniciar al inicio o final si se sale de los límites
+    if (indiceActual < 0) {
+        indiceActual = totalImagenes - 1;
+    } else if (indiceActual >= totalImagenes) {
+        indiceActual = 0;
+    }
+
+    // Desplazar el carrusel
+    const desplazamiento = -indiceActual * 33.33; // Desplazamiento en porcentaje (cada imagen ocupa el 33.33%)
+    carrusel.style.transform = `translateX(${desplazamiento}%)`;
+}
+
+setInterval(() => {
+    moverCarrusel(1);
+}, 5000); // Cambia la imagen cada 5 segundos
+
+</script>
+      
     
 </body>
 </html>
