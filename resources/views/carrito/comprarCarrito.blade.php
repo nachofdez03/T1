@@ -13,41 +13,45 @@
     <header>
         <div class="contenedor">
             <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
-            <nav class="menu">
-                <a href= "{{route('carrito')}}" class="carrito-link">
+            <!-- Botón de menú hamburguesa -->
+            <button id="menu-toggle" class="hamburger-menu" aria-label="Abrir menú">
+                ☰
+            </button>
+
+            <nav class="menu" id="mobile-menu">
+                <button id="menu-close" class="close-button">✖</button>
+                <a href="{{ route('carrito') }}" class="carrito-link">
                     <img src="{{ asset('images/Carrito.png') }}" alt="Carrito" id="carrito-icon">
                 </a>
                 <a href="https://lol.fandom.com/wiki/T1">Leaguepedia</a>
                 <a href="{{ route('nosotros')}}">Sobre Nosotros</a>
                 <a href="{{ route('tienda')}}">Tienda</a>
-
+                
                 @if(Auth::check())
-                    @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
+                    @if(Auth::user()->isAdmin())
                     <div class="dropdown">
                         <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
                         <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
-                            <a class="dropdown-item" href="{{ route('createProducts')}}" id="colorDespegable">Crear Productos</a>
-                            <a class="dropdown-item" href="{{ route('deleteProducts')}}" id="colorDespegable">Borrar Productos</a>
-                            <a class="dropdown-item" href="{{ route('createCategoria') }}" id="colorDespegable">Crear Categoría</a>
-                            <a class="dropdown-item" href="{{ route('deleteCategorias') }}" id="colorDespegable">Borrar Categoría</a>
-                            <a class="dropdown-item" href="{{ route('updateStock')}}" id="colorDespegable">Modificar Stock</a>
-                            <a class="dropdown-item" href="{{ route('pedidos')}}" id="colorDespegable">Pedidos</a>
-
+                            <a class="dropdown-item" href="{{ route('createProducts') }}">Crear Productos</a>
+                            <a class="dropdown-item" href="{{ route('deleteProducts') }}">Borrar Productos</a>
+                            <a class="dropdown-item" href="{{ route('createCategoria') }}">Crear Categoría</a>
+                            <a class="dropdown-item" href="{{ route('deleteCategorias') }}">Borrar Categoría</a>
+                            <a class="dropdown-item" href="{{ route('updateStock') }}">Modificar Stock</a>
+                            <a class="dropdown-item" href="{{ route('pedidos') }}">Pedidos</a>
                         </div>
                     </div>
                     @endif
-                <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a>
-                <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+                    <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @else
-                <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('login') }}">Login</a>
                 @endif
-            </nav>            
+            </nav>
         </div>
     </header>
-
-
+    
     <main class="container my-5">
         <h2 class="text-center mb-4">Resumen de Compra</h2>
 
@@ -67,10 +71,10 @@
         @endforeach
 
         <!-- Mostrar el total de la compra -->
-        <h4 class="text-center" style="margin-bottom: 3em; margin-top:2em;">Total: ${{ number_format($total, 2) }}</h4>
+        <h4 class="text-center total" style="margin-bottom: 2em;"><b>Total: ${{ number_format($total, 2) }}</b></h4>
 
          <!-- Formulario de Datos del Cliente -->
-         <div class="mt-5" style="padding-top: 4em; margin-bottom: 10em"> <!-- Margen superior para separar del producto -->
+         <div class="mt-5"> <!-- Margen superior para separar del producto -->
             <form id="compra-form" action="{{ route('procesarCompra') }}" method="POST" class="formulario-compacto">
                 @csrf
                 <h4 class="mb-3">Datos del Cliente</h4>
@@ -240,6 +244,10 @@
 
     </script>
     
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/menuHamburguesa.js') }}"></script>
+
     <script>
         document.getElementById('compra-form').addEventListener('submit', function(event) {
             const nombre = document.getElementById('nombre').value.trim();
@@ -299,23 +307,9 @@
             return re.test(String(email).toLowerCase());
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const dropdownToggle = document.getElementById("adminDropdown");
-            const dropdownMenu = document.getElementById("adminDropdownMenu");
-
-            dropdownToggle.addEventListener("click", function(event) {
-                event.preventDefault();
-                dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-            });
-
-            document.addEventListener("click", function(event) {
-                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.style.display = "none";
-                }
-            });
-        });
+       
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+   
 </body>
 </html>

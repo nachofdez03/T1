@@ -37,48 +37,53 @@
     <header>
         <div class="contenedor">
             <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
-            <nav class="menu">
-                <a href= "{{route('carrito')}}" class="carrito-link">
+            <!-- Botón de menú hamburguesa -->
+            <button id="menu-toggle" class="hamburger-menu" aria-label="Abrir menú">
+                ☰
+            </button>
+
+            <nav class="menu" id="mobile-menu">
+                <button id="menu-close" class="close-button">✖</button>
+                <a href="{{ route('carrito') }}" class="carrito-link">
                     <img src="{{ asset('images/Carrito.png') }}" alt="Carrito" id="carrito-icon">
                 </a>
                 <a href="https://lol.fandom.com/wiki/T1">Leaguepedia</a>
                 <a href="{{ route('nosotros')}}">Sobre Nosotros</a>
                 <a href="{{ route('tienda')}}">Tienda</a>
-
+                
                 @if(Auth::check())
-                    @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
+                    @if(Auth::user()->isAdmin())
                     <div class="dropdown">
                         <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
                         <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
-                            <a class="dropdown-item" href="{{ route('createProducts')}}" id="colorDespegable">Crear Productos</a>
-                            <a class="dropdown-item" href="{{ route('deleteProducts')}}" id="colorDespegable">Borrar Productos</a>
-                            <a class="dropdown-item" href="{{ route('createCategoria') }}" id="colorDespegable">Crear Categoría</a>
-                            <a class="dropdown-item" href="{{ route('deleteCategorias') }}" id="colorDespegable">Borrar Categoría</a>
-                            <a class="dropdown-item" href="{{ route('updateStock')}}" id="colorDespegable">Modificar Stock</a>
-                            <a class="dropdown-item" href="{{ route('pedidos')}}" id="colorDespegable">Pedidos</a>
-
+                            <a class="dropdown-item" href="{{ route('createProducts') }}">Crear Productos</a>
+                            <a class="dropdown-item" href="{{ route('deleteProducts') }}">Borrar Productos</a>
+                            <a class="dropdown-item" href="{{ route('createCategoria') }}">Crear Categoría</a>
+                            <a class="dropdown-item" href="{{ route('deleteCategorias') }}">Borrar Categoría</a>
+                            <a class="dropdown-item" href="{{ route('updateStock') }}">Modificar Stock</a>
+                            <a class="dropdown-item" href="{{ route('pedidos') }}">Pedidos</a>
                         </div>
                     </div>
                     @endif
-                <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a>
-                <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+                    <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @else
-                <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('login') }}">Login</a>
                 @endif
-            </nav>            
+            </nav>
         </div>
     </header>
 
-    <main class="container mt-5" style="padding-bottom: 7em">
+    <main class="container mt-5 mainDeleteCategorias" style="padding-bottom: 7em">
         <h1 class="text-center">Eliminar Categorías</h1>
     
         <!-- Mostrar categorías de la categoría seleccionada -->
         @if(isset($categorias) && count($categorias) > 0)
             <div class="row" >
                 @foreach($categorias as $categoria)
-                    <div class="col-md-3 mb-4" style=" margin-top: 4em;">
+                    <div class="col-md-3 mb-4 grid-container" style=" margin-top: 4em;">
                         <div class="card h-100 text-center " style=" margin-bottom: 4rem;">
                             <div class="d-flex justify-content-center align-items-center">
                                 <img src="{{ asset($categoria->imagen) }}" class="card-img-top" alt="{{ $categoria->nombre }}">
@@ -203,7 +208,9 @@
 
     </script>
 
+    <script src="{{ asset('js/menuHamburguesa.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    
 </body>
 </html>

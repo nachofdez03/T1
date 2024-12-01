@@ -13,55 +13,60 @@
         />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="icon" href="{{ asset('images/T1.png') }}" type="image/x-icon">
-
+    
 </head>
 <body style="background-color: black">
 
     <header>
         <div class="contenedor">
             <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
-            <nav class="menu">
-                <a href= "{{route('carrito')}}" class="carrito-link">
+            <!-- Botón de menú hamburguesa -->
+            <button id="menu-toggle" class="hamburger-menu" aria-label="Abrir menú">
+                ☰
+            </button>
+
+            <nav class="menu" id="mobile-menu">
+                <button id="menu-close" class="close-button">✖</button>
+                <a href="{{ route('carrito') }}" class="carrito-link">
                     <img src="{{ asset('images/Carrito.png') }}" alt="Carrito" id="carrito-icon">
                 </a>
                 <a href="https://lol.fandom.com/wiki/T1">Leaguepedia</a>
                 <a href="{{ route('nosotros')}}">Sobre Nosotros</a>
                 <a href="{{ route('tienda')}}">Tienda</a>
-
+                
                 @if(Auth::check())
-                    @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
+                    @if(Auth::user()->isAdmin())
                     <div class="dropdown">
                         <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
                         <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
-                            <a class="dropdown-item" href="{{ route('createProducts')}}" id="colorDespegable">Crear Productos</a>
-                            <a class="dropdown-item" href="{{ route('deleteProducts')}}" id="colorDespegable">Borrar Productos</a>
-                            <a class="dropdown-item" href="{{ route('createCategoria') }}" id="colorDespegable">Crear Categoría</a>
-                            <a class="dropdown-item" href="{{ route('deleteCategorias') }}" id="colorDespegable">Borrar Categoría</a>
-                            <a class="dropdown-item" href="{{ route('updateStock')}}" id="colorDespegable">Modificar Stock</a>
-                            <a class="dropdown-item" href="{{ route('pedidos')}}" id="colorDespegable">Pedidos</a>
-
+                            <a class="dropdown-item" href="{{ route('createProducts') }}">Crear Productos</a>
+                            <a class="dropdown-item" href="{{ route('deleteProducts') }}">Borrar Productos</a>
+                            <a class="dropdown-item" href="{{ route('createCategoria') }}">Crear Categoría</a>
+                            <a class="dropdown-item" href="{{ route('deleteCategorias') }}">Borrar Categoría</a>
+                            <a class="dropdown-item" href="{{ route('updateStock') }}">Modificar Stock</a>
+                            <a class="dropdown-item" href="{{ route('pedidos') }}">Pedidos</a>
                         </div>
                     </div>
                     @endif
-                <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a>
-                <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+                    <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @else
-                <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('login') }}">Login</a>
                 @endif
-            </nav>    
-                        
+            </nav>
         </div>
+    </header>
+    
                 {{-- Con el event.preventDefault() le decimos al navegador 
                 "No sigas el enlace. Vamos a hacer algo diferente". y debido a que el formulario solo
                  se envia con un submit pues le damos al submit para que se envie y se active el action
                  que es el metodo --}}
-    </header>
 
     <main>
         <div class="Carrusel">
-            <div >
+            <div>
                 <div class="carrusel-contenedor-imagenes">
                     <img src="{{ asset('images/T1Carrusel.png') }}" alt="Imagen 1">
                     <img src="{{ asset('images/T1Carrusel2.jpg') }}" alt="Imagen 1">
@@ -73,7 +78,7 @@
                 <button class="prev" onclick="moverCarrusel(-1)">&#10094;</button>
                 <button class="next" onclick="moverCarrusel(1)">&#10095;</button>
             </div>
-
+        </div>
         <div class="info-box">
             <p>ESPORTS APPAREL</p>
             <h2>T1 COLLECTION</h2>
@@ -91,13 +96,10 @@
         </div>
         <div class="info-box" style="background-color: black">
             <p>CHECK</p>
-            <h2>OUR LATEST VIDEOS
+            <h2 class="responsiveH2">OUR LATEST VIDEOS
             </h2>
         </div>
-        <div class="youtube-videos" style="background: linear-gradient(
-        to bottom,
-        black,
-        #e30a2d";>
+        <div class="youtube-videos" style="background: linear-gradient(to bottom,black,#e30a2d";>
             <div class="video-grid">
                 <!-- Video 1 -->
                 <iframe 
@@ -310,7 +312,7 @@
 <script>
     let indiceActual = 0;
 
-function moverCarrusel(direccion) {
+    function moverCarrusel(direccion) {
     const carrusel = document.querySelector('.carrusel-contenedor-imagenes');
     const totalImagenes = document.querySelectorAll('.carrusel-contenedor-imagenes img').length;
 
@@ -334,6 +336,35 @@ setInterval(() => {
 }, 5000); // Cambia la imagen cada 5 segundos
 
 </script>
+<script>
+    // Referencias al botón del menú hamburguesa y el de cerrar
+    const menuToggle = document.getElementById("menu-toggle");
+    const menuClose = document.getElementById("menu-close");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    // Mostrar el menú al hacer clic en el botón hamburguesa
+    menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.add("open"); // Añade la clase "open" para mostrar el menú
+    });
+
+    // Cerrar el menú al hacer clic en la cruz
+    menuClose.addEventListener("click", () => {
+        mobileMenu.classList.remove("open"); // Quita la clase "open" para ocultar el menú
+    });
+
+    // Cerrar el menú al hacer clic fuera de él
+    document.addEventListener("click", (event) => {
+        if (
+            !menuToggle.contains(event.target) && 
+            !mobileMenu.contains(event.target) &&
+            !menuClose.contains(event.target)
+        ) {
+            mobileMenu.classList.remove("open");
+        }
+    });
+</script>
+
+
     
 </body>
 </html>

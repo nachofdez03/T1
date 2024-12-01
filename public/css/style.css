@@ -13,6 +13,31 @@ header {
     background-color: black;
 }
 
+/* Estilo del menú hamburguesa */
+.hamburger-menu {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+/* Botón de cierre dentro del menú */
+.close-button {
+    display: none; /* Ocultar por defecto en pantallas grandes */
+    font-size: 1.5em; /* Tamaño de la cruz (1.5em = ~24px) */
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0.625em; /* Equivale a ~10px */
+    right: 0.625em; /* Equivale a ~10px */
+    z-index: 1100; /* Asegurar que esté sobre otros elementos */
+}
+
 .contenedor {
     width: 90%;
     margin: auto; /* CSS asigna automáticamente el mismo valor a los márgenes izquierdo derecho contenedor. */
@@ -44,6 +69,14 @@ header .contenedor {
     padding: 0.5em 1em; /* Espaciado en los elementos del dropdown */
 }
 
+nav.menu .dropdown-menu a {
+    background-color: black !important; /* Cambia el fondo a blanco */
+    color: white !important; /* Asegura que el texto sea negro */
+}
+nav.menu .dropdown-menu .dropdown-item:hover {
+    background-color: #f1f1f1 !important;
+    color: black !important; /* Cambia el fondo al hover */
+}
 #colorDespegable {
     color: white;
 }
@@ -90,8 +123,8 @@ nav a:hover {
 .next,
 .prev {
     position: absolute;
-    top: 10%;
-    transform: translateY(-50%);
+    top: 40%;
+    /* transform: translateY(-50%); */
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
@@ -237,7 +270,7 @@ nav a:hover {
 /* Container for the videos */
 .youtube-videos {
     text-align: center;
-    padding: 20px 0;
+    padding: 2em 0;
 }
 
 /* Grid layout for the video iframes */
@@ -607,6 +640,8 @@ div .informacion {
 .formulario-compacto {
     max-width: 30em; /* Ajusta el ancho máximo que desees */
     margin: auto; /* Centra el formulario horizontalmente */
+    padding-top: 5em;
+    margin-bottom: 7em;
 }
 
 /* Administrador */
@@ -642,9 +677,14 @@ main.MainPedidos {
     width: 80%; /* Ajusta el ancho general de cada pedido */
     margin: 1.5em auto; /* Espaciado entre pedidos */
     background-color: #ffffff;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 1em;
     padding: 1.5em;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+    box-shadow: 7px 7px 7px 7px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
+.mainProducto {
+    min-height: 100vh;
+    padding-bottom: 7em;
 }
 
 /* Título del pedido */
@@ -672,10 +712,24 @@ main.MainPedidos {
     color: black;
     font-weight: bold;
 }
+.mainUpdateStock {
+    min-height: 100vh;
+    padding-bottom: 7em;
+}
 
 .estado-entregado {
     color: #38b000;
     font-weight: bold;
+}
+
+.mainCrearCategoria {
+    min-height: 75vh;
+    padding-bottom: 7em;
+}
+
+.divCrearPro {
+    padding-top: 2em;
+    margin-bottom: 10em;
 }
 
 /* HOVER */
@@ -757,17 +811,355 @@ div .fotoIcono:hover {
 
 /* MOVIL */
 @media (max-width: 576px) {
-    body {
-        padding: 10px;
+    .hamburger-menu {
+        display: block; /* Mostrar botón hamburguesa */
     }
-    .footer .row {
+
+    .close-button {
+        display: block;
+    }
+
+    .menu {
+        display: flex; /* Establece el diseño como flex */
+        flex-direction: column; /* Los enlaces se apilan verticalmente */
+        position: fixed; /* Posición fija para el efecto "off-canvas" */
+        top: 0;
+        right: -15.625em; /* Oculta el menú fuera del lateral derecho (15.625em = 250px) */
+        width: 15.625em; /* Ancho del menú (15.625em = 250px) */
+        height: 100%; /* Altura completa */
+        background-color: black; /* Fondo negro */
+        padding: 1em; /* Padding de 16px */
+        transition: right 0.3s ease-in-out; /* Animación suave */
+        z-index: 1000;
+    }
+
+    .menu a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 0;
+    }
+
+    .menu a:hover {
+        background-color: #e30a2d; /* Fondo rojo al pasar el mouse */
+    }
+
+    /* Clase para mostrar el menú */
+    .menu.open {
+        right: 0; /* Muestra el menú desplazándolo hacia la vista */
+    }
+
+    header .contenedor {
+        display: flex; /* Utilizamos Flexbox */
+        justify-content: center; /* Centramos horizontalmente */
+        align-items: center; /* Centramos verticalmente */
+        height: 10em; /* Ajusta el tamaño del header según sea necesario */
+        position: relative; /* Importante para manejar posicionamiento de otros elementos */
+        text-align: start; /* Centra el contenido como backup */
+    }
+
+    nav .menu {
+        justify-content: start;
+    }
+    .hamburger-menu {
+        display: block; /* Mostrar el botón hamburguesa */
+    }
+
+    header .contenedor .image-link img {
+        width: 70%;
+        height: auto; /* Mantén la proporción */
+    }
+    .Carrusel {
+        display: none;
+    }
+
+    /* En pantallas más pequeñas, las imágenes deben apilarse verticalmente */
+    .containerPhotos {
+        background: linear-gradient(to#e30a2d, black);
+        flex-direction: column; /* Cambia la dirección a columna */
+        align-items: center; /* Centra los elementos */
+        gap: 1em; /* Reduce el espacio entre las imágenes */
+        padding: 1em; /* Ajusta el padding */
+    }
+
+    .image-box:nth-child(1) {
+        display: none;
+    }
+    .image-box:nth-child(2) {
+        width: 85%; /* Las imágenes ocupan el 100% del ancho */
+    }
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center; /* Centra los videos */
+    }
+
+    .video-grid iframe {
+        width: 90%; /* Los videos ocupan el 80% del ancho en pantallas pequeñas */
+        height: auto; /* Aumenta la altura de los videos en pantallas pequeñas */
+    }
+
+    .photo-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .nav_footer {
+        display: none;
+    }
+
+    .footerLast {
+        font-size: 0.9em;
+    }
+    .info-box .responsiveH2 {
+        font-size: 2em;
+    }
+
+    .mainCrearCategoria {
+        min-height: 75vh;
+        max-width: 70%;
+    }
+
+    .mainCrearProducto .FormCreateProductos {
+        max-width: 70%;
+    }
+
+    .divCrearPro {
+        padding-top: 1em;
+        margin-bottom: 7em;
+    }
+
+    .mainDeleteCategorias {
+        max-width: 70%;
+    }
+    .mainUpdateStock {
+        max-width: 75%;
+    }
+
+    .nav-pills {
+        flex-direction: column;
+    }
+
+    #ex1 {
+        width: 50%;
+    }
+    #formLogin {
+        padding-top: 5em;
+        min-width: 70%;
+    }
+
+    .table thead {
+        display: none; /* Ocultar encabezados en móviles */
+    }
+    .table tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1em;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1em;
+    }
+    .table td {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5em;
+    }
+    .table td img {
+        display: block;
+        margin: 0 auto;
+        max-width: 20em;
+    }
+
+    .table td:last-child {
+        margin-bottom: 0;
+    }
+
+    .acciones {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .acciones .btn {
+        width: 100%;
+    }
+
+    .imagen-container {
+        flex-direction: column; /* Apilar elementos verticalmente */
+        align-items: center; /* Centrar contenido */
+        text-align: center; /* Centrar texto */
+    }
+
+    .informacionCompra {
+        margin-top: 1em;
+    }
+
+    div.informacion {
+        min-width: 70%;
+    }
+    div.informacion strong {
+        font-size: 1.1em;
+    }
+    .total {
+        font-size: 1.6em;
+        margin-top: 1em;
+    }
+    #compra-form {
+        max-width: 70%;
+    }
+
+    .map-container {
+        width: 100%;
+        height: auto;
+    }
+    #map {
+        width: 80%;
+        height: 30vh;
+    }
+    .info-box2.localization h2 {
+        font-size: 2em;
+    }
+    .informacionCompra {
+        min-width: 70%;
+    }
+    .mainProducto {
+        width: 100%;
+    }
+    .mainProducto .container {
+        display: flex;
+        flex-direction: column; /* En pantallas más grandes, la imagen y la información se alinean en fila */
+        justify-content: center;
+    }
+
+    .informacion {
+        text-align: left; /* En pantallas grandes, la información se alinea a la izquierda */
+        margin-left: 2em; /* Un poco de espacio entre la imagen y la información */
+    }
+    #productosTienda {
+        max-width: 100%;
+    }
+    .mainProducto .informacion {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        flex-wrap: wrap;
+
         text-align: center;
     }
-    .image-box {
-        margin-bottom: 15px;
+}
+
+/* TABLET */
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .hamburger-menu {
+        display: block; /* Mostrar botón hamburguesa */
+        font-size: 3em; /* Más pequeño en pantallas grandes */
     }
-    .shop-button {
-        font-size: 14px;
-        padding: 8px;
+
+    .close-button {
+        display: block;
+    }
+
+    .menu {
+        display: flex; /* Establece el diseño como flex */
+        flex-direction: column; /* Los enlaces se apilan verticalmente */
+        position: fixed; /* Posición fija para el efecto "off-canvas" */
+        top: 0;
+        right: -15.625em; /* Oculta el menú fuera del lateral derecho (15.625em = 250px) */
+        width: 15.625em; /* Ancho del menú (15.625em = 250px) */
+        height: 100%; /* Altura completa */
+        background-color: black; /* Fondo negro */
+        padding: 1em; /* Padding de 16px */
+        transition: right 0.3s ease-in-out; /* Animación suave */
+        z-index: 1000;
+    }
+
+    .menu a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 0;
+    }
+
+    .menu a:hover {
+        background-color: #e30a2d; /* Fondo rojo al pasar el mouse */
+    }
+
+    /* Clase para mostrar el menú */
+    .menu.open {
+        right: 0; /* Muestra el menú desplazándolo hacia la vista */
+    }
+
+    header .contenedor {
+        display: flex; /* Utilizamos Flexbox */
+        justify-content: center; /* Centramos horizontalmente */
+        align-items: center; /* Centramos verticalmente */
+        height: 10em; /* Ajusta el tamaño del header según sea necesario */
+        position: relative; /* Importante para manejar posicionamiento de otros elementos */
+        text-align: start; /* Centra el contenido como backup */
+    }
+
+    nav .menu {
+        justify-content: start;
+    }
+    .hamburger-menu {
+        display: block; /* Mostrar el botón hamburguesa */
+    }
+    .Carrusel {
+        display: none;
+    }
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center; /* Centra los videos */
+    }
+
+    .video-grid iframe {
+        width: 90%; /* Los videos ocupan el 80% del ancho en pantallas pequeñas */
+        height: auto; /* Aumenta la altura de los videos en pantallas pequeñas */
+    }
+    .photo-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6em;
+    }
+
+    header .contenedor .image-link img {
+        width: 70%;
+        height: auto; /* Mantén la proporción */
+    }
+    .footerLast,
+    nav a {
+        font-size: 1.2em;
+    }
+
+    .nav_footer .column:nth-child(3) {
+        display: none;
+    }
+    .mainCrearCategoria {
+        min-height: 55vh;
+        padding-bottom: 7em;
+    }
+    .map-container {
+        width: 100%;
+        height: auto;
+        padding-bottom: 6em;
+    }
+    #map {
+        width: 80%;
+        height: 30vh;
+    }
+    .info-box2.localization h2 {
+        font-size: 2em;
+    }
+    .mainProducto {
+        min-height: 60vh;
+    }
+    .mainUpdateStock {
+        min-height: 70vh;
+        padding-bottom: 7em;
+    }
+    #formLogin {
+        padding-top: 5em;
+        min-width: 70%;
     }
 }

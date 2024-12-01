@@ -22,42 +22,49 @@
     </head>
 
     <body>
-        <header>
-            <div class="contenedor">
-                <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
-                <nav class="menu">
-                    <a href= "{{route('carrito')}}" class="carrito-link">
-                        <img src="{{ asset('images/Carrito.png') }}" alt="Carrito" id="carrito-icon">
-                    </a>
-                    <a href="https://lol.fandom.com/wiki/T1">Leaguepedia</a>
-                    <a href="{{ route('nosotros')}}">Sobre Nosotros</a>
-                    <a href="{{ route('tienda')}}">Tienda</a>
-    
-                    @if(Auth::check())
-                        @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
-                        <div class="dropdown">
-                            <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
-                            <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
-                                <a class="dropdown-item" href="{{ route('createProducts')}}" id="colorDespegable">Crear Productos</a>
-                                <a class="dropdown-item" href="{{ route('deleteProducts')}}" id="colorDespegable">Borrar Productos</a>
-                                <a class="dropdown-item" href="{{ route('createCategoria') }}" id="colorDespegable">Crear Categoría</a>
-                                <a class="dropdown-item" href="{{ route('deleteCategorias') }}" id="colorDespegable">Borrar Categoría</a>
-                                <a class="dropdown-item" href="{{ route('updateStock')}}" id="colorDespegable">Modificar Stock</a>
-                                <a class="dropdown-item" href="{{ route('pedidos')}}" id="colorDespegable">Pedidos</a>
-    
-                            </div>
+        
+    <header>
+        <div class="contenedor">
+            <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
+            <!-- Botón de menú hamburguesa -->
+            <button id="menu-toggle" class="hamburger-menu" aria-label="Abrir menú">
+                ☰
+            </button>
+
+            <nav class="menu" id="mobile-menu">
+                <button id="menu-close" class="close-button">✖</button>
+                <a href="{{ route('carrito') }}" class="carrito-link">
+                    <img src="{{ asset('images/Carrito.png') }}" alt="Carrito" id="carrito-icon">
+                </a>
+                <a href="https://lol.fandom.com/wiki/T1">Leaguepedia</a>
+                <a href="{{ route('nosotros')}}">Sobre Nosotros</a>
+                <a href="{{ route('tienda')}}">Tienda</a>
+                
+                @if(Auth::check())
+                    @if(Auth::user()->isAdmin())
+                    <div class="dropdown">
+                        <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
+                        <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
+                            <a class="dropdown-item" href="{{ route('createProducts') }}">Crear Productos</a>
+                            <a class="dropdown-item" href="{{ route('deleteProducts') }}">Borrar Productos</a>
+                            <a class="dropdown-item" href="{{ route('createCategoria') }}">Crear Categoría</a>
+                            <a class="dropdown-item" href="{{ route('deleteCategorias') }}">Borrar Categoría</a>
+                            <a class="dropdown-item" href="{{ route('updateStock') }}">Modificar Stock</a>
+                            <a class="dropdown-item" href="{{ route('pedidos') }}">Pedidos</a>
                         </div>
-                        @endif
-                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a>
+                    </div>
+                    @endif
+                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
                     <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    @else
+                @else
                     <a href="{{ route('login') }}">Login</a>
-                    @endif
-                </nav>            
-            </div>
-        </header>
+                @endif
+            </nav>
+        </div>
+    </header>
+    
     
         <main class="compra">
             <h2 class="mb-4 text-center" style="margin-top: 1em">Resumen de Compra</h2>
@@ -87,7 +94,7 @@
         @endif
      
             <!-- Formulario de Datos del Cliente -->
-            <div class="mt-5" style="padding-top: 4em; margin-bottom: 10em"> <!-- Margen superior para separar del producto -->
+            <div class="mt-5" style="padding-top: 2em; margin-bottom: 10em"> <!-- Margen superior para separar del producto -->
                 <form id="compra-form" action="{{ route('confirmar', $producto->id) }}" method="POST" class="formulario-compacto">
                     @csrf
                     <h4 class="mb-3">Datos del Cliente</h4>
@@ -355,6 +362,7 @@
             return re.test(String(email).toLowerCase());
         }
     </script>
+    <script src="{{ asset('js/menuHamburguesa.js') }}"></script>
 
     </body>
 </html>

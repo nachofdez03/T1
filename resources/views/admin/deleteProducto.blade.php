@@ -25,41 +25,46 @@
         <header>
             <div class="contenedor">
                 <a href="{{ route('home')}}" class="image-link"><img src="{{ asset('images/T1_Logo.jpg') }}" alt=""></a>
-                <nav class="menu">
-                    <a href= "{{route('carrito')}}" class="carrito-link">
+                <!-- Botón de menú hamburguesa -->
+                <button id="menu-toggle" class="hamburger-menu" aria-label="Abrir menú">
+                    ☰
+                </button>
+    
+                <nav class="menu" id="mobile-menu">
+                    <button id="menu-close" class="close-button">✖</button>
+                    <a href="{{ route('carrito') }}" class="carrito-link">
                         <img src="{{ asset('images/Carrito.png') }}" alt="Carrito" id="carrito-icon">
                     </a>
                     <a href="https://lol.fandom.com/wiki/T1">Leaguepedia</a>
                     <a href="{{ route('nosotros')}}">Sobre Nosotros</a>
                     <a href="{{ route('tienda')}}">Tienda</a>
-    
+                    
                     @if(Auth::check())
-                        @if(Auth::user()->isAdmin())  {{-- Auth::user(); Retorna el usuario autenticado o null si no hay uno  --}}
+                        @if(Auth::user()->isAdmin())
                         <div class="dropdown">
                             <a href="#" id="adminDropdown" class="dropdown-toggle">Administración</a>
                             <div class="dropdown-menu" id="adminDropdownMenu" style="background-color: black">
-                                <a class="dropdown-item" href="{{ route('createProducts')}}" id="colorDespegable">Crear Productos</a>
-                                <a class="dropdown-item" href="{{ route('deleteProducts')}}" id="colorDespegable">Borrar Productos</a>
-                                <a class="dropdown-item" href="{{ route('createCategoria') }}" id="colorDespegable">Crear Categoría</a>
-                                <a class="dropdown-item" href="{{ route('deleteCategorias') }}" id="colorDespegable">Borrar Categoría</a>
-                                <a class="dropdown-item" href="{{ route('updateStock')}}" id="colorDespegable">Modificar Stock</a>
-                                <a class="dropdown-item" href="{{ route('pedidos')}}" id="colorDespegable">Pedidos</a>
-    
+                                <a class="dropdown-item" href="{{ route('createProducts') }}">Crear Productos</a>
+                                <a class="dropdown-item" href="{{ route('deleteProducts') }}">Borrar Productos</a>
+                                <a class="dropdown-item" href="{{ route('createCategoria') }}">Crear Categoría</a>
+                                <a class="dropdown-item" href="{{ route('deleteCategorias') }}">Borrar Categoría</a>
+                                <a class="dropdown-item" href="{{ route('updateStock') }}">Modificar Stock</a>
+                                <a class="dropdown-item" href="{{ route('pedidos') }}">Pedidos</a>
                             </div>
                         </div>
                         @endif
-                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a>
-                    <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                        <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+                        <form id="logout-form" action="{{ route('logout.submit') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     @else
-                    <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Login</a>
                     @endif
-                </nav>            
+                </nav>
             </div>
         </header>
     
-        <main class="container mt-5" style="min-height: 75vh; padding-bottom: 7em">
+        <main class="container mt-5 mainDeleteProducto" style="min-height: 75vh; padding-bottom: 7em">
             <div class="container mt-5">
                 <h1 class="text-center" style="margin-bottom: 1em">Eliminar Productos</h1>
                 <!-- Formulario para seleccionar la categoría -->
@@ -89,7 +94,7 @@
                                         <form action="{{ route('deleteProducts.destroy', $producto->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este producto?');">
                                             @csrf
                                             @method('POST')
-                                            <button type="submit" class="btn btn-danger w-100" style="border-block-color: black">Eliminar Producto</button>
+                                            <button type="submit" class="btn btn-danger w-100 botonBorrar" style="border-block-color: black">Eliminar Producto</button>
                                         </form>
                                     </div>
                                 </div>
@@ -215,5 +220,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script src="{{ asset('js/menuHamburguesa.js') }}"></script>
+
     </body>
 </html>
