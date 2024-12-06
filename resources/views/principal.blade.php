@@ -155,16 +155,24 @@
             <h2 style="font-size: 3em; color:white;">WHERE T1 COMPETE</h2>
             <div class="photo-row">
                 <!-- Foto 1 -->
-                <img src={{ asset('images/games/lck.jpg')}} alt="Foto 1">
+                <a href="https://lol.fandom.com/wiki/T1">
+                    <img src={{ asset('images/games/lck.jpg')}} alt="Foto 1">
+                </a>
                 
                 <!-- Foto 2 -->
-                <img src={{ asset('images/games/lckcl.jpg')}} alt="Foto 2">
+                <a href="https://lol.fandom.com/wiki/T1_Esports_Academy">
+                    <img src={{ asset('images/games/lckcl.jpg')}} alt="Foto 2">
+                </a>
                 
                 <!-- Foto 3 -->
-                <img src={{ asset('images/games/val.jpg')}} alt="Foto 3">
+                <a href="https://liquipedia.net/valorant/T1">
+                    <img src={{ asset('images/games/val.jpg')}} alt="Foto 3">
+                </a>
                 
                 <!-- Foto 4 -->
-                <img src={{ asset('images/games/cc.jpg')}} alt="Foto 4">
+                <a href="https://lol.fandom.com/wiki/T1#Organization">
+                    <img src={{ asset('images/games/cc.jpg')}} alt="Foto 4">
+                </a>
             </div>
         </div>
         
