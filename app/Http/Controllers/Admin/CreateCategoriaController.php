@@ -28,19 +28,16 @@ class CreateCategoriaController extends Controller
         $categoria = new Categoria();
         $categoria->nombre = $request->nombre;
 
-        // Manejar la carga de la imagen
         if ($request->hasFile('imagen')) {
-            // Obtener el archivo de la imagen
+
             $imagen = $request->file('imagen');
-            // Generar un nombre único para la imagen
+
             $imageName = str_replace(' ', '_', $request->nombre) . '.' . $imagen->getClientOriginalExtension();
-            // Especificar la ruta donde se guardará la imagen
+
             $imagePath = 'images/categorias/' . $imageName;
 
-            // Mover la imagen a la carpeta de imágenes públicas
             $imagen->move(public_path('images/categorias'), $imageName);
 
-            // Guardar la ruta de la imagen en la categoría
             $categoria->imagen = $imagePath;
         }
 
