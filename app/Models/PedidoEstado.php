@@ -13,7 +13,7 @@ class PedidoEstado extends Model
 
     protected $fillable = ['nombre'];
 
-    // Relación inversa con `Pedido`
+    // Relación inversa con Pedido
     public function pedidos()
     {
         return $this->hasMany(Pedido::class, 'pedido_estado_id');

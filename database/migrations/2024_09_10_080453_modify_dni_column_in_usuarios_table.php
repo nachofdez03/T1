@@ -24,7 +24,6 @@ return new class extends Migration {
     {
         Schema::table('usuarios', function (Blueprint $table) {
 
-            // Aquí puedes revertir los cambios realizados
             $table->string('dni', 8)->change();
         });
     }

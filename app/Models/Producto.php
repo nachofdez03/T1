@@ -19,14 +19,9 @@ class Producto extends Model
         'imagen'           // Ruta de la imagen
     ];
 
-    // Definimos un accessor para obtener el valor dinámico de 'disponible'
 
 
-    // Relación con la categoría
-    // Al definir la relación, puedes acceder fácilmente a los datos de la categoría asociada a un producto.
-    // Las relaciones son una característica poderosa de Eloquent. Al definir la relación,
-    // puedes utilizar métodos de Eloquent como with(), whereHas(), y otros, para trabajar con 
-    // datos relacionados de manera más sencilla y eficaz.
+
     public function categoria()
     {
         return $this->belongsTo(Categoria::class); // Un producto pertenece a una categoria
@@ -45,7 +40,7 @@ class Producto extends Model
     public function pedidos()
     {
         return $this->belongsToMany(Pedido::class, 'pedido_producto')
-            ->withPivot('cantidad', 'precio') // Campos adicionales de la tabla intermedia
+            ->withPivot('cantidad', 'precio')
             ->withTimestamps();
     }
 

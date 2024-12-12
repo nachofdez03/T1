@@ -26,21 +26,21 @@ header {
 
 /* Botón de cierre dentro del menú */
 .close-button {
-    display: none; /* Ocultar por defecto en pantallas grandes */
-    font-size: 1.5em; /* Tamaño de la cruz (1.5em = ~24px) */
+    display: none;
+    font-size: 1.5em;
     color: white;
     background: none;
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 0.625em; /* Equivale a ~10px */
-    right: 0.625em; /* Equivale a ~10px */
-    z-index: 1100; /* Asegurar que esté sobre otros elementos */
+    top: 0.625em;
+    right: 0.625em;
+    z-index: 1100;
 }
 
 .contenedor {
     width: 90%;
-    margin: auto; /* CSS asigna automáticamente el mismo valor a los márgenes izquierdo derecho contenedor. */
+    margin: auto;
 }
 
 .contenedor a.image-link {
@@ -50,7 +50,7 @@ header {
 header .contenedor {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Alineamos de forma vertical los elementos del contenedor del header  */
+    align-items: center;
 }
 #carrito-icon {
     width: 2em;
@@ -58,24 +58,24 @@ header .contenedor {
     margin: auto;
 }
 .dropdown-menu {
-    display: none; /* Ocultamos el menú desplegable por defecto */
-    position: absolute; /* Posicionamos el dropdown correctamente */
-    background-color: black; /* Color de fondo del menú desplegable */
-    z-index: 1000; /* Asegura que el menú aparezca por encima de otros elementos */
+    display: none;
+    position: absolute;
+    background-color: black;
+    z-index: 1000;
 }
 
 .dropdown-item {
-    color: white; /* Asegúrate de que el texto del dropdown sea visible */
-    padding: 0.5em 1em; /* Espaciado en los elementos del dropdown */
+    color: white;
+    padding: 0.5em 1em;
 }
 
 nav.menu .dropdown-menu a {
-    background-color: black !important; /* Cambia el fondo a blanco */
-    color: white !important; /* Asegura que el texto sea negro */
+    background-color: black !important;
+    color: white !important;
 }
 nav.menu .dropdown-menu .dropdown-item:hover {
     background-color: #f1f1f1 !important;
-    color: black !important; /* Cambia el fondo al hover */
+    color: black !important;
 }
 #colorDespegable {
     color: white;
@@ -91,7 +91,6 @@ nav a {
     text-decoration: none;
 }
 
-/* La pseudo-clase hover permite aplicar un estilo cuando el cursor pasa por encima  */
 nav a:hover {
     color: red;
 }
@@ -110,21 +109,20 @@ nav a:hover {
 
 .carrusel-contenedor-imagenes {
     display: flex;
-    width: 300%; /* Aseguramos que el contenedor de las imágenes ocupe el ancho total de tres imágenes */
+    width: 300%;
     transition: transform 0.5s ease-in-out;
 }
 
 .carrusel-contenedor-imagenes img {
-    width: 33.33%; /* Asegura que cada imagen ocupe el 33% del ancho del carrusel */
-    object-fit: cover; /* Mantiene la proporción de la imagen sin deformarla */
-    height: 100%; /* Ajusta la altura para que sea del mismo tamaño que el contenedor */
+    width: 33.33%;
+    object-fit: cover;
+    height: 100%;
 }
 
 .next,
 .prev {
     position: absolute;
     top: 40%;
-    /* transform: translateY(-50%); */
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
@@ -146,6 +144,7 @@ nav a:hover {
 .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
 /* Estilo del contenedor principal del carrusel */
 .Carrusel .contenedor {
     width: 100%;
@@ -157,17 +156,17 @@ nav a:hover {
 
 /* Flecha izquierda */
 .carrusel-flecha.izquierda {
-    left: 10px; /* Separación desde el borde izquierdo */
+    left: 10px;
 }
 
 /* Flecha derecha */
 .carrusel-flecha.derecha {
-    right: 10px; /* Separación desde el borde derecho */
+    right: 10px;
 }
 
 /* Estilo al pasar el cursor sobre las flechas */
 .carrusel-flecha:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro */
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .info-box {
@@ -199,7 +198,7 @@ nav a:hover {
 .info-box p {
     margin: 0;
     font-size: 1.5em;
-    color: white; /* Texto pequeño con color gris */
+    color: white;
     /* text-shadow: 0.1em 0.1em 0.2em red; Sombra roja */
 }
 
@@ -213,10 +212,10 @@ nav a:hover {
 /* Contenedor principal que usa Flexbox para alinear en fila */
 .containerPhotos {
     background: black;
-    display: flex; /* Alinea los elementos en una fila */
-    justify-content: space-between; /* Espacio entre las imágenes */
-    gap: 2em; /* Espacio entre las imágenes, en em */
-    padding: 2em; /* Espacio alrededor del contenedor */
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+    padding: 2em;
     box-sizing: border-box;
 }
 
@@ -228,15 +227,15 @@ nav a:hover {
 
 /* Estilos para la primera imagen (35%) */
 .photo-1 {
-    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
-    height: auto; /* Mantiene la relación de aspecto */
-    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
-    border-radius: 0.625em; /* Bordes redondeados (10px) */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.625em;
 }
 
 /* Estilos para la segunda imagen (65%) */
 .photo-2 {
-    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    width: 100%;
     height: auto;
     object-fit: cover;
     border-radius: 0.625em; /* Bordes redondeados */
@@ -257,39 +256,36 @@ nav a:hover {
     background-color: #e30a2d;
     color: white;
     display: block;
-    margin-top: 0.625em; /* Espacio entre la imagen y el botón (10px) */
+    margin-top: 0.625em;
     text-align: center;
     padding: 0.625em 1.25em; /* Padding para el botón en em */
     border: none;
-    border-radius: 0.3125em; /* Bordes redondeados (5px) */
+    border-radius: 0.3125em;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1em; /* Tamaño de fuente de 1em */
+    font-size: 1em;
 }
 
-/* Container for the videos */
 .youtube-videos {
     text-align: center;
     padding: 2em 0;
 }
 
-/* Grid layout for the video iframes */
 .video-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2em; /* Equal spacing between grid items */
+    gap: 2em;
     justify-items: center;
     max-width: 80em;
     margin: auto;
-    padding: 1em; /* Symmetrical padding around the grid */
+    padding: 1em;
 }
 
-/* Styling for each iframe */
 .video-grid iframe {
     width: 100%;
     max-width: 40em;
-    aspect-ratio: 16/9; /* Maintain the aspect ratio */
-    border-radius: 8px; /* Smooth rounded corners */
+    aspect-ratio: 16/9;
+    border-radius: 8px;
     border: none;
 }
 
@@ -301,7 +297,7 @@ nav a:hover {
         black
     ); /* Gradiente de arriba a abajo */
     text-align: center;
-    padding: 2em 0; /* Padding en unidades em */
+    padding: 2em 0;
 }
 
 .photo-gallery h2 {
@@ -313,19 +309,19 @@ nav a:hover {
 /* Container for the row of photos */
 .photo-row {
     display: flex;
-    justify-content: space-between; /* Espacio entre las fotos */
-    gap: 2em; /* Mayor espacio entre fotos */
-    max-width: 100%; /* Usar el ancho completo del contenedor */
+    justify-content: space-between;
+    gap: 2em;
+    max-width: 100%;
     margin: auto;
     padding: 0 2em; /* Padding a los lados */
 }
 
 /* Styling for each photo */
 .photo-row img {
-    width: 100%; /* Las imágenes ocupan el ancho de su contenedor */
-    max-width: 20em; /* Limitar cada imagen a un máximo de 18em de ancho */
-    height: auto; /* Mantener la relación de aspecto */
-    border-radius: 0.5em; /* Bordes redondeados ligeros */
+    width: 100%;
+    max-width: 20em;
+    height: auto;
+    border-radius: 0.5em;
     transition: transform 0.3s ease; /* Efecto suave al pasar el ratón */
 }
 
@@ -412,7 +408,7 @@ nav a:hover {
 .map-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido en el eje horizontal */
+    align-items: center;
     width: 100%;
     padding-top: 3em;
     background: black;
@@ -423,14 +419,14 @@ nav a:hover {
     font-weight: bold;
     color: red;
     color: white; /* Texto pequeño con color gris */
-    margin-bottom: 1em; /* Espacio debajo del título */
+    margin-bottom: 1em;
 }
 
 #map {
-    width: 70%; /* El mapa ocupará el 100% del ancho disponible */
-    height: 70vh; /* El mapa ocupará el 60% de la altura del contenedor */
+    width: 70%;
+    height: 70vh;
     border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* FOOTER */
@@ -456,7 +452,7 @@ nav a:hover {
 }
 
 .lista_iconos li {
-    list-style-type: none; /* Elimina las viñetas (puntos) de la lista */
+    list-style-type: none;
 }
 .Iconos {
     margin-top: 1em;
@@ -499,8 +495,8 @@ nav a:hover {
 .login {
     display: flex;
     flex-direction: column;
-    justify-content: start; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
+    justify-content: start;
+    align-items: center;
     margin-top: 6.5em;
 }
 
@@ -511,7 +507,7 @@ nav a:hover {
     justify-content: center;
     width: 100%;
     gap: 12em;
-    list-style-type: none; /* Quita los puntos de la lista */
+    list-style-type: none;
     padding-top: 5em;
     text-align: center;
     border: 2px solid transparent; /* Borde por defecto */
@@ -519,9 +515,9 @@ nav a:hover {
 }
 
 .categorias img {
-    width: 7.5em; /* Ajusta este valor según tus necesidades */
-    height: auto; /* Mantiene la proporción de la imagen */
-    border: 4px solid transparent; /* Borde transparente por defecto */
+    width: 7.5em;
+    height: auto;
+    border: 4px solid transparent;
     cursor: pointer;
 }
 
@@ -531,13 +527,13 @@ nav a:hover {
 
 /* Clase personalizada para dividir en 5 columnas */
 .col-lg-custom {
-    flex: 0 0 20%; /* Cada columna ocupa el 20% del ancho */
-    max-width: 20%; /* Máximo ancho del 20% */
+    flex: 0 0 20%;
+    max-width: 20%;
 }
 
 .categorias-row {
     display: flex;
-    flex-wrap: wrap; /* Asegura que los elementos bajen de línea si no caben */
+    flex-wrap: wrap;
 }
 
 /* ESTILOS DE BOOTSTRAP SOBREESCRITOS*/
@@ -617,8 +613,8 @@ div .informacion {
     border-radius: 0.2em;
     margin: 0.5em 0;
     transition: border-color 0.3s;
-    padding: 0.5em; /* Aumentar el padding para mayor tamaño vertical */
-    font-size: 1.1rem; /* Aumentar el tamaño de la fuente si es necesario */
+    padding: 0.5em;
+    font-size: 1.1rem;
 }
 
 .imagen-container .informacion {
@@ -638,8 +634,8 @@ div .informacion {
 }
 
 .formulario-compacto {
-    max-width: 30em; /* Ajusta el ancho máximo que desees */
-    margin: auto; /* Centra el formulario horizontalmente */
+    max-width: 30em;
+    margin: auto;
     padding-top: 5em;
     margin-bottom: 7em;
 }
@@ -647,8 +643,8 @@ div .informacion {
 /* Administrador */
 
 .FormCreateProductos {
-    max-width: 30em; /* Ajusta el ancho máximo que desees */
-    margin: auto; /* Centra el formulario horizontalmente */
+    max-width: 30em;
+    margin: auto;
 }
 
 /* PEDIDO */
@@ -657,9 +653,9 @@ main.MainPedidos {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
+    justify-content: center;
     flex-direction: column;
-    align-items: center; /* Centra verticalmente */
+    align-items: center;
     background-color: #f5f5f5;
     font-family: Arial, sans-serif;
 }
@@ -674,13 +670,13 @@ main.MainPedidos {
 
 /* Contenedor para cada pedido */
 .pedido {
-    width: 80%; /* Ajusta el ancho general de cada pedido */
-    margin: 1.5em auto; /* Espaciado entre pedidos */
+    width: 80%;
+    margin: 1.5em auto;
     background-color: #ffffff;
     border: 1px solid white;
     border-radius: 1em;
     padding: 1.5em;
-    box-shadow: 7px 7px 7px 7px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+    box-shadow: 7px 7px 7px 7px rgba(0, 0, 0, 0.1);
 }
 .mainProducto {
     min-height: 100vh;
@@ -757,14 +753,11 @@ a.btn-dark:hover {
     border: solid 1px black;
 }
 .categorias img:hover {
-    border-bottom-color: black; /* Cambia el borde a negro al hacer hover */
+    border-bottom-color: black;
 
-    transform: translateY(
-        -1em
-    ); /* Mueve la imagen hacia arriba al hacer hover */
-    /* filter: brightness(70%); Alternativa simple para oscurecer la imagen */
+    transform: translateY(-1em);
+
     transition: all 0.3s ease;
-    /* permite que los cambios en cualquier propiedad CSS del elemento se animen suavemente durante un tiempo de 0.3 segundos*/
 }
 
 .productos img:hover {
@@ -782,14 +775,13 @@ a.btn-dark:hover {
 }
 
 .categoria-seleccionada {
-    filter: brightness(0.9); /* 0.5 significa 50% de brillo */
-    border: 2px solid transparent; /* Borde por defecto */
-    border-radius: 2em; /* Bordes redondeados */
+    filter: brightness(0.9);
+    border: 2px solid transparent;
+    border-radius: 2em;
 }
 
 #colorDespegable:hover {
-    /* Cambia el fondo al pasar el mouse */
-    color: black; /* Cambia el color del texto a negro en hover */
+    color: black;
 }
 
 .enlaces a:hover,
@@ -803,7 +795,7 @@ div .fotoIcono:hover {
     cursor: pointer;
 }
 .video-grid iframe:hover {
-    transform: scale(1.05); /* Zoom del 5% al pasar el ratón */
+    transform: scale(1.05);
     transition: all 0.4s ease;
 }
 
@@ -812,7 +804,7 @@ div .fotoIcono:hover {
 /* MOVIL */
 @media (max-width: 576px) {
     .hamburger-menu {
-        display: block; /* Mostrar botón hamburguesa */
+        display: block;
     }
 
     .close-button {
@@ -820,16 +812,16 @@ div .fotoIcono:hover {
     }
 
     .menu {
-        display: flex; /* Establece el diseño como flex */
-        flex-direction: column; /* Los enlaces se apilan verticalmente */
-        position: fixed; /* Posición fija para el efecto "off-canvas" */
+        display: flex;
+        flex-direction: column;
+        position: fixed;
         top: 0;
-        right: -15.625em; /* Oculta el menú fuera del lateral derecho (15.625em = 250px) */
-        width: 15.625em; /* Ancho del menú (15.625em = 250px) */
-        height: 100%; /* Altura completa */
-        background-color: black; /* Fondo negro */
-        padding: 1em; /* Padding de 16px */
-        transition: right 0.3s ease-in-out; /* Animación suave */
+        right: -15.625em;
+        width: 15.625em;
+        height: 100%;
+        background-color: black;
+        padding: 1em;
+        transition: right 0.3s ease-in-out;
         z-index: 1000;
     }
 
@@ -840,21 +832,21 @@ div .fotoIcono:hover {
     }
 
     .menu a:hover {
-        background-color: #e30a2d; /* Fondo rojo al pasar el mouse */
+        background-color: #e30a2d;
     }
 
     /* Clase para mostrar el menú */
     .menu.open {
-        right: 0; /* Muestra el menú desplazándolo hacia la vista */
+        right: 0;
     }
 
     header .contenedor {
-        display: flex; /* Utilizamos Flexbox */
-        justify-content: center; /* Centramos horizontalmente */
-        align-items: center; /* Centramos verticalmente */
-        height: 10em; /* Ajusta el tamaño del header según sea necesario */
-        position: relative; /* Importante para manejar posicionamiento de otros elementos */
-        text-align: start; /* Centra el contenido como backup */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10em;
+        position: relative;
+        text-align: start;
     }
 
     nav .menu {
@@ -866,7 +858,7 @@ div .fotoIcono:hover {
 
     header .contenedor .image-link img {
         width: 70%;
-        height: auto; /* Mantén la proporción */
+        height: auto;
     }
     .Carrusel {
         display: none;
@@ -875,10 +867,10 @@ div .fotoIcono:hover {
     /* En pantallas más pequeñas, las imágenes deben apilarse verticalmente */
     .containerPhotos {
         background: linear-gradient(to#e30a2d, black);
-        flex-direction: column; /* Cambia la dirección a columna */
-        align-items: center; /* Centra los elementos */
-        gap: 1em; /* Reduce el espacio entre las imágenes */
-        padding: 1em; /* Ajusta el padding */
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        padding: 1em;
     }
 
     .image-box:nth-child(1) {
@@ -890,12 +882,12 @@ div .fotoIcono:hover {
     .video-grid {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        align-items: center; /* Centra los videos */
+        align-items: center;
     }
 
     .video-grid iframe {
-        width: 90%; /* Los videos ocupan el 80% del ancho en pantallas pequeñas */
-        height: auto; /* Aumenta la altura de los videos en pantallas pequeñas */
+        width: 90%;
+        height: auto;
     }
 
     .photo-row {
@@ -982,9 +974,9 @@ div .fotoIcono:hover {
     }
 
     .imagen-container {
-        flex-direction: column; /* Apilar elementos verticalmente */
-        align-items: center; /* Centrar contenido */
-        text-align: center; /* Centrar texto */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .informacionCompra {
@@ -1024,13 +1016,13 @@ div .fotoIcono:hover {
     }
     .mainProducto .container {
         display: flex;
-        flex-direction: column; /* En pantallas más grandes, la imagen y la información se alinean en fila */
+        flex-direction: column;
         justify-content: center;
     }
 
     .informacion {
-        text-align: left; /* En pantallas grandes, la información se alinea a la izquierda */
-        margin-left: 2em; /* Un poco de espacio entre la imagen y la información */
+        text-align: left;
+        margin-left: 2em;
     }
     #productosTienda {
         max-width: 100%;
@@ -1049,8 +1041,8 @@ div .fotoIcono:hover {
 
 @media (min-width: 600px) and (max-width: 1024px) {
     .hamburger-menu {
-        display: block; /* Mostrar botón hamburguesa */
-        font-size: 3em; /* Más pequeño en pantallas grandes */
+        display: block;
+        font-size: 3em;
     }
 
     .close-button {
@@ -1058,15 +1050,15 @@ div .fotoIcono:hover {
     }
 
     .menu {
-        display: flex; /* Establece el diseño como flex */
-        flex-direction: column; /* Los enlaces se apilan verticalmente */
-        position: fixed; /* Posición fija para el efecto "off-canvas" */
+        display: flex;
+        flex-direction: column;
+        position: fixed;
         top: 0;
-        right: -15.625em; /* Oculta el menú fuera del lateral derecho (15.625em = 250px) */
-        width: 15.625em; /* Ancho del menú (15.625em = 250px) */
-        height: 100%; /* Altura completa */
-        background-color: black; /* Fondo negro */
-        padding: 1em; /* Padding de 16px */
+        right: -15.625em;
+        width: 15.625em;
+        height: 100%;
+        background-color: black;
+        padding: 1em;
         transition: right 0.3s ease-in-out; /* Animación suave */
         z-index: 1000;
     }
@@ -1083,16 +1075,16 @@ div .fotoIcono:hover {
 
     /* Clase para mostrar el menú */
     .menu.open {
-        right: 0; /* Muestra el menú desplazándolo hacia la vista */
+        right: 0;
     }
 
     header .contenedor {
-        display: flex; /* Utilizamos Flexbox */
-        justify-content: center; /* Centramos horizontalmente */
-        align-items: center; /* Centramos verticalmente */
-        height: 10em; /* Ajusta el tamaño del header según sea necesario */
-        position: relative; /* Importante para manejar posicionamiento de otros elementos */
-        text-align: start; /* Centra el contenido como backup */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10em;
+        position: relative;
+        text-align: start;
     }
 
     nav .menu {
@@ -1108,12 +1100,12 @@ div .fotoIcono:hover {
     .video-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        align-items: center; /* Centra los videos */
+        align-items: center;
     }
 
     .video-grid iframe {
-        width: 90%; /* Los videos ocupan el 80% del ancho en pantallas pequeñas */
-        height: auto; /* Aumenta la altura de los videos en pantallas pequeñas */
+        width: 90%;
+        height: auto;
     }
     .photo-row {
         display: flex;

@@ -9,7 +9,6 @@ class Pedido extends Model
 {
     use HasFactory;
 
-    // Campos que se pueden llenar en el modelo
     protected $fillable = [
         'nombre_cliente',
         'email_cliente',
@@ -18,7 +17,7 @@ class Pedido extends Model
         'pedido_estado_id'
     ];
 
-    // Relación con la tabla `pedido_estado`
+    // Relación con la tabla pedido_estado
     public function estado()
     {
         return $this->belongsTo(PedidoEstado::class, 'pedido_estado_id');

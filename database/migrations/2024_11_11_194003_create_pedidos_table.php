@@ -13,14 +13,14 @@ return new class extends Migration {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();  // id del pedido
             $table->string('nombre_cliente');
-            $table->string('email_cliente');  // corregir el nombre de 'emial_cliente' a 'email_cliente'
+            $table->string('email_cliente');
             $table->string('direccion');
-            $table->decimal('total', 10, 2);  // Total del pedido
+            $table->decimal('total', 10, 2);
 
             // Relación con la tabla 'pedido_estado' para definir el estado del pedido
             $table->foreignId('pedido_estado_id')
-                ->constrained('pedido_estado') // Asegura que apunte a 'pedido_estado'
-                ->onDelete('cascade'); // Si el estado se elimina, los pedidos relacionados también se eliminan
+                ->constrained('pedido_estado')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

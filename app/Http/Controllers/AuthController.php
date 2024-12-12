@@ -9,13 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-// Usuario: Es tu modelo Eloquent que representa la tabla usuarios en la base de datos.
 
-// Auth::login(): Este método inicia la sesión de un usuario autenticado. 
-// No pertenece a tu modelo de usuario (en este caso, Usuario), sino a la facade Auth,
 class AuthController extends Controller
 {
-    // El objeto $request contiene los datos que se enviaron desde el formulario a traves del HTTP
     // Método para registrar usuarios
     public function register(Request $request)
     {
@@ -41,7 +37,6 @@ class AuthController extends Controller
         Auth::login($usuario);
 
 
-        // Redireccionar o devolver una respuesta
         return redirect()->route('home')->with('success', 'Usuario registrado exitosamente');
     }
 

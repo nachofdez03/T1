@@ -11,14 +11,14 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id(); // Columna ID autoincremental
-            $table->string('dni', 8); // Campo DNI con longitud de 8 caracteres
-            $table->string('nombre', 50); // Campo Nombre con máximo 50 caracteres
-            $table->string('apellido', 50); // Campo Apellido con máximo 50 caracteres
-            $table->string('correo', 100)->unique(); // Campo Correo único y de hasta 100 caracteres
-            $table->string('password'); // Campo Password (en caso de que uses hash, no necesitas especificar longitud)
-            $table->tinyInteger('rol')->default(0); // Define el valor por defecto
-            $table->timestamps(); // Crea columnas created_at y updated_at
+            $table->id();
+            $table->string('dni', 8);
+            $table->string('nombre', 50);
+            $table->string('apellido', 50);
+            $table->string('correo', 100)->unique();
+            $table->string('password');
+            $table->tinyInteger('rol')->default(0);
+            $table->timestamps();
         });
     }
 

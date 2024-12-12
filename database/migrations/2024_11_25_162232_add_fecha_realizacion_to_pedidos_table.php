@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('pedidos', function (Blueprint $table) {
-            $table->timestamp('fecha_pedido')->nullable()->after('total'); // Añade la columna después de 'total'
+            $table->timestamp('fecha_pedido')->nullable()->after('total');
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('pedidos', function (Blueprint $table) {
-            $table->dropColumn('fecha_pedido'); // Elimina la columna en caso de rollback
+            $table->dropColumn('fecha_pedido');
         });
     }
 };

@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable; // Cambiar Model por Authenticatable
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
-// Modelo representa al usuario en tu aplicacion
 class Usuario extends Authenticatable // Extender de Authenticatable en vez de Model
 {
     use HasFactory;

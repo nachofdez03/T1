@@ -22,7 +22,6 @@ class CarritoController extends Controller
     }
 
     // Añadir un producto al carrito
-    // Añadir un producto al carrito
     public function agregar(Request $request, $id)
     {
         $producto = Producto::findOrFail($id); // Validar que el producto exista
@@ -48,7 +47,10 @@ class CarritoController extends Controller
         session()->put('carrito', $carrito);
 
 
-        return redirect()->back()->with('exito', 'Producto añadido al carrito');
+        // return redirect()->back()->with('exito', 'Producto añadido al carrito');
+        return redirect()->route('tienda');
+
+
     }
 
 
@@ -99,14 +101,11 @@ class CarritoController extends Controller
         foreach ($carrito as $producto) {
             $total += $producto['precio'] * $producto['cantidad'];
 
-            // dd($producto);  // Esto te mostrará el contenido completo del producto y podrás verificar si 'imagen' tiene un valor correcto
-
         }
         // Pasar los datos del carrito y el total a la vista
         return view('carrito.comprarCarrito', compact('carrito', 'total'));
     }
 
-    // Procesar la compra
     // Procesar la compra
     public function procesarCompra(Request $request)
     {
@@ -118,7 +117,6 @@ class CarritoController extends Controller
             return redirect()->route('carrito.index')->with('error', 'Tu carrito está vacío');
         }
 
-        // Validar los campos del formulario de compra
         $request->validate([
             'nombre' => 'required|string|max:255',
             'correo' => 'required|email|max:255',
@@ -129,12 +127,10 @@ class CarritoController extends Controller
 
         ]);
 
-        // Si la validación pasa, procesamos la compra
         $total = 0;
         foreach ($carrito as $id => $producto) {
             $total += $producto['precio'] * $producto['cantidad'];  // Calcula el total de la compra
 
-            // Verificar si el stock es suficiente
             $prod = Producto::find($id);
             if ($prod) {
                 if ($prod->stock < $producto['cantidad']) {
@@ -149,7 +145,6 @@ class CarritoController extends Controller
         }
 
 
-        // Crear el pedido en la tabla `pedidos`
         $pedido = Pedido::create([
             'nombre_cliente' => $request->input('nombre'),
             'email_cliente' => $request->input('correo'),
@@ -158,7 +153,6 @@ class CarritoController extends Controller
             'pedido_estado_id' => 1, // Estado inicial: "Pendiente"
         ]);
 
-        // Registrar los productos del carrito en la tabla intermedia `pedido_producto`
         foreach ($carrito as $id => $producto) {
             $pedido->productos()->attach($id, [
                 'cantidad' => $producto['cantidad'],
@@ -169,7 +163,6 @@ class CarritoController extends Controller
         // Limpiar el carrito después de la compra
         session()->forget('carrito');
 
-        // Redirigir al usuario a una página de confirmación de la compra
         return redirect()->route('home')->with('exito', 'Compra realizada con éxito. Total: ' . number_format($total, 2));
     }
 }

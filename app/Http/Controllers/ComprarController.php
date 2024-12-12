@@ -40,11 +40,6 @@ class ComprarController extends Controller
         // Buscar el producto por ID
         $producto = Producto::findOrFail($id);
 
-        // Verificar si hay suficiente stock
-        // if ($producto->stock < $request->cantidad) {
-        //     return redirect()->back()->withErrors(['cantidad' => 'No hay suficiente stock disponible.']);
-        // }
-
         // Confirmar la compra y actualizar el stock
         $producto->stock -= $request->cantidad;
         $producto->save();
@@ -58,8 +53,7 @@ class ComprarController extends Controller
             'pedido_estado_id' => 1, // Estado inicial: "Pendiente"
         ]);
 
-        // El método attach se utiliza en relaciones de tipo muchos a muchos en Laravel para asociar registros en tablas intermedias
-        // Registrar el producto en la tabla intermedia `pedido_producto`
+        // Registrar el producto en la tabla intermedia 
         $pedido->productos()->attach($producto->id, [
             'cantidad' => $request->input(key: 'cantidad'),
             'precio' => $producto->precio,
@@ -68,10 +62,7 @@ class ComprarController extends Controller
         return redirect()->route('home')->with('success');
 
 
-
-
-        // Redireccionar al usuario a una página de confirmación o mostrar un mensaje de éxito
-        // return redirect()->route('compra.confirmada')->with('success', 'Compra confirmada con éxito.');
+        ;
     }
 
 }

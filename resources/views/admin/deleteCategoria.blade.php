@@ -13,22 +13,22 @@
 
 
         .card-img-top {
-            width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
-            height: 12em; /* Ajusta la altura de la imagen */
-            object-fit: contain; /* Mantiene la proporción de la imagen y la ajusta */
-            margin: 0 auto; /* Centra la imagen */
+            width: 100%; 
+            height: 12em; 
+            object-fit: contain; 
+            margin: 0 auto; 
         }
 
-        /* Asegurarse de que las tarjetas tengan la misma altura */
+        
         .card-body {
-            flex-grow: 1; /* Hace que el contenido del cuerpo de la tarjeta ocupe el espacio restante */
+            flex-grow: 1; 
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Espacia el título y el botón */
+            justify-content: space-between; 
         }
     
         .col-md-4 {
-            margin-bottom: 0rem; /* Espacio adicional entre las filas */
+            margin-bottom: 0rem; 
         }
       
     </style>

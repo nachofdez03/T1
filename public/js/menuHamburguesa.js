@@ -3,14 +3,13 @@ const menuToggle = document.getElementById("menu-toggle");
 const menuClose = document.getElementById("menu-close");
 const mobileMenu = document.getElementById("mobile-menu");
 
-// Mostrar el menú al hacer clic en el botón hamburguesa
 menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.add("open"); // Añade la clase "open" para mostrar el menú
+    mobileMenu.classList.add("open");
 });
 
 // Cerrar el menú al hacer clic en la cruz
 menuClose.addEventListener("click", () => {
-    mobileMenu.classList.remove("open"); // Quita la clase "open" para ocultar el menú
+    mobileMenu.classList.remove("open");
 });
 
 // Cerrar el menú al hacer clic fuera de él

@@ -34,7 +34,7 @@ class DeleteCategoriaController extends Controller
         // Buscar y eliminar la categoría
         $categoria = Categoria::findOrFail($id);
 
-        // Eliminar productos asociados a la categoría (si lo deseas)
+        // Eliminar productos asociados a la categoría 
         $categoria->productos()->delete(); // Si es necesario eliminar productos de la categoría
 
         // Eliminar la categoría

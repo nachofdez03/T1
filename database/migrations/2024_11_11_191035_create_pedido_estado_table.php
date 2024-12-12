@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('pedido_estado', function (Blueprint $table) {
             $table->id();  // id del estado
-            $table->string('nombre'); // nombre del estado (ej: Pendiente, Enviado, Entregado)
+            $table->string('nombre');
             $table->timestamps();
         });
     }

@@ -11,9 +11,9 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('categorias', function (Blueprint $table) {
-            $table->id(); // Columna id autoincremental
-            $table->string('nombre'); // Columna para el nombre de la categoría
-            $table->timestamps(); // Para created_at y updated_at
+            $table->id();
+            $table->string('nombre');
+            $table->timestamps();
         });
     }
 

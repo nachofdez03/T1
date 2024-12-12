@@ -11,15 +11,15 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('pedido_producto', function (Blueprint $table) {
-            $table->id(); // ID del registro en la tabla intermedia
-            $table->foreignId('pedido_id') // Relación con la tabla 'pedidos'
+            $table->id();
+            $table->foreignId('pedido_id')
                 ->constrained('pedidos')
                 ->onDelete('cascade');
-            $table->foreignId('producto_id') // Relación con la tabla 'productos'
+            $table->foreignId('producto_id')
                 ->constrained('productos')
                 ->onDelete('cascade');
-            $table->integer('cantidad'); // Cantidad del producto en este pedido
-            $table->decimal('precio', 10, 2); // Precio del producto en el momento del pedido
+            $table->integer('cantidad');
+            $table->decimal('precio', 10, 2);
             $table->timestamps();
         });
     }

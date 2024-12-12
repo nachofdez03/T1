@@ -65,6 +65,10 @@
                  que es el metodo --}}
 
     <main>
+        <div id="welcome-message" style="display: none;">
+            <p>¡Bienvenido a nuestra tienda T1! Esta es tu primera visita.</p>
+         </div>
+         
         <div class="Carrusel">
             <div>
                 <div class="carrusel-contenedor-imagenes">
@@ -371,7 +375,6 @@ setInterval(() => {
         }
     });
 </script>
-
 
     
 </body>
